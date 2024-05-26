@@ -223,42 +223,72 @@ table {
     }
     .bar {
         background-color: #007bff;
-        width: 10px; /* Width of each bar */
+        width: 5px; /* Width of each bar */
         position: absolute;
         bottom: 0;
     }
 
     //HEH bars
-    .bar1 { left: 10px; }
-    .bar2 { left: 10px; }
-    .bar3 { left: 20px; }
-    .bar4 { left: 30px; }
-    .bar5 { left: 40px; }
-    .bar6 { left: 50px; }
-    .bar7 { left: 60px; }
-    .bar8 { left: 70px; }
-    .bar9 { left: 80px; }
-    .bar10 { left:90px; }
-    .bar11 { left: 100px; }
-    .bar12 { left: 110px; }
-    .bar13 { left: 120px; }
-    .bar14 { left: 130px; }
-    .bar15 { left: 140px; }
-    .bar16 { left: 150px; }
-    .bar17 { left: 160px; }
-    .bar18 { left: 170px; }
-    .bar19 { left: 180px; }
-    .bar20 { left: 190px; }
-    .bar21 { left: 200px; }
-    .bar22 { left: 210px; }
-    .bar23 { left: 220px; }
-    .bar24 { left: 230px; }
-    .bar25 { left: 240px; }
-    .bar26 { left: 250px; }
-    .bar27 { left: 260px; }
-    .bar28 { left: 270px; }
-    .bar29 { left: 280px; }
-    .bar30 { left: 290px; }
+    .bar1 { left: 5px; }
+    .bar2 { left: 5px; }
+    .bar3 { left: 10px; }
+    .bar4 { left: 15px; }
+    .bar5 { left: 20px; }
+    .bar6 { left: 25px; }
+    .bar7 { left: 30px; }
+    .bar8 { left: 35px; }
+    .bar9 { left: 40px; }
+    .bar10 { left: 45px; }
+    .bar11 { left: 50px; }
+    .bar12 { left: 55px; }
+    .bar13 { left: 60px; }
+    .bar14 { left: 65px; }
+    .bar15 { left: 70px; }
+    .bar16 { left: 75px; }
+    .bar17 { left: 80px; }
+    .bar18 { left: 85px; }
+    .bar19 { left: 90px; }
+    .bar20 { left: 95px; }
+    .bar21 { left: 100px; }
+    .bar22 { left: 105px; }
+    .bar23 { left: 110px; }
+    .bar24 { left: 115px; }
+    .bar25 { left: 120px; }
+    .bar26 { left: 125px; }
+    .bar27 { left: 130px; }
+    .bar28 { left: 135px; }
+    .bar29 { left: 140px; }
+    .bar30 { left: 145px; }
+    .bar31 { left: 150px; }
+    .bar32 { left: 155px; }
+    .bar33 { left: 160px; }
+    .bar34 { left: 165px; }
+    .bar35 { left: 170px; }
+    .bar36 { left: 175px; }
+    .bar37 { left: 180px; }
+    .bar38 { left: 185px; }
+    .bar39 { left: 190px; }
+    .bar40 { left: 195px; }
+    .bar41 { left: 200px; }
+    .bar42 { left: 205px; }
+    .bar43 { left: 210px; }
+    .bar44 { left: 215px; }
+    .bar45 { left: 220px; }
+    .bar46 { left: 225px; }
+    .bar47 { left: 230px; }
+    .bar48 { left: 235px; }
+    .bar49 { left: 240px; }
+    .bar50 { left: 245px; }
+    .bar51 { left: 250px; }
+    .bar52 { left: 255px; }
+    .bar53 { left: 260px; }
+    .bar54 { left: 265px; }
+    .bar55 { left: 270px; }
+    .bar56 { left: 275px; }
+    .bar57 { left: 280px; }
+    .bar58 { left: 285px; }
+    .bar59 { left: 290px; }
+    .bar60 { left: 295px; }
   </style>
 </head>
 
@@ -335,6 +365,36 @@ table {
     <div class="bar bar28" style="height: 0;"></div>
     <div class="bar bar29" style="height: 0;"></div>
     <div class="bar bar30" style="height: 0;"></div>
+    <div class="bar bar31" style="height: 0;"></div>
+    <div class="bar bar32" style="height: 0;"></div>
+    <div class="bar bar33" style="height: 0;"></div>
+    <div class="bar bar34" style="height: 0;"></div>
+    <div class="bar bar35" style="height: 0;"></div>
+    <div class="bar bar36" style="height: 0;"></div>
+    <div class="bar bar37" style="height: 0;"></div>
+    <div class="bar bar38" style="height: 0;"></div>
+    <div class="bar bar39" style="height: 0;"></div>
+    <div class="bar bar40" style="height: 0;"></div>
+    <div class="bar bar41" style="height: 0;"></div>
+    <div class="bar bar42" style="height: 0;"></div>
+    <div class="bar bar43" style="height: 0;"></div>
+    <div class="bar bar44" style="height: 0;"></div>
+    <div class="bar bar45" style="height: 0;"></div>
+    <div class="bar bar46" style="height: 0;"></div>
+    <div class="bar bar47" style="height: 0;"></div>
+    <div class="bar bar48" style="height: 0;"></div>
+    <div class="bar bar49" style="height: 0;"></div>
+    <div class="bar bar50" style="height: 0;"></div>
+    <div class="bar bar51" style="height: 0;"></div>
+    <div class="bar bar52" style="height: 0;"></div>
+    <div class="bar bar53" style="height: 0;"></div>
+    <div class="bar bar54" style="height: 0;"></div>
+    <div class="bar bar55" style="height: 0;"></div>
+    <div class="bar bar56" style="height: 0;"></div>
+    <div class="bar bar57" style="height: 0;"></div>
+    <div class="bar bar58" style="height: 0;"></div>
+    <div class="bar bar59" style="height: 0;"></div>
+    <div class="bar bar60" style="height: 0;"></div>
 </div>
 
     
@@ -385,7 +445,7 @@ function updatePressureReadings(newReading) {
     data.unshift(result2);
     
     // Remove the oldest reading if the array length exceeds
-    if (data.length > 30) {
+    if (data.length > 60) {
         data.pop();
     }
 }
