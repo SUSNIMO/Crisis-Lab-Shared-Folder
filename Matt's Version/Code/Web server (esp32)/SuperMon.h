@@ -229,16 +229,36 @@ table {
     }
 
     //HEH bars
-    .bar1 { left: 20px; }
-    .bar2 { left: 40px; }
-    .bar3 { left: 70px; }
-    .bar4 { left: 100px; }
-    .bar5 { left: 130px; }
-    .bar6 { left: 160px; }
-    .bar7 { left: 190px; }
-    .bar8 { left: 220px; }
-    .bar9 { left: 250px; }
-    .bar10 { left: 280px; }
+    .bar1 { left: 10px; }
+    .bar2 { left: 10px; }
+    .bar3 { left: 20px; }
+    .bar4 { left: 30px; }
+    .bar5 { left: 40px; }
+    .bar6 { left: 50px; }
+    .bar7 { left: 60px; }
+    .bar8 { left: 70px; }
+    .bar9 { left: 80px; }
+    .bar10 { left:90px; }
+    .bar11 { left: 100px; }
+    .bar12 { left: 110px; }
+    .bar13 { left: 120px; }
+    .bar14 { left: 130px; }
+    .bar15 { left: 140px; }
+    .bar16 { left: 150px; }
+    .bar17 { left: 160px; }
+    .bar18 { left: 170px; }
+    .bar19 { left: 180px; }
+    .bar20 { left: 190px; }
+    .bar21 { left: 200px; }
+    .bar22 { left: 210px; }
+    .bar23 { left: 220px; }
+    .bar24 { left: 230px; }
+    .bar25 { left: 240px; }
+    .bar26 { left: 250px; }
+    .bar27 { left: 260px; }
+    .bar28 { left: 270px; }
+    .bar29 { left: 280px; }
+    .bar30 { left: 290px; }
   </style>
 </head>
 
@@ -295,6 +315,26 @@ table {
     <div class="bar bar8" style="height: 0;"></div>
     <div class="bar bar9" style="height: 0;"></div>
     <div class="bar bar10" style="height: 0;"></div>
+    <div class="bar bar11" style="height: 0;"></div>
+    <div class="bar bar12" style="height: 0;"></div>
+    <div class="bar bar13" style="height: 0;"></div>
+    <div class="bar bar14" style="height: 0;"></div>
+    <div class="bar bar15" style="height: 0;"></div>
+    <div class="bar bar16" style="height: 0;"></div>
+    <div class="bar bar17" style="height: 0;"></div>
+    <div class="bar bar18" style="height: 0;"></div>
+    <div class="bar bar19" style="height: 0;"></div>
+    <div class="bar bar20" style="height: 0;"></div>
+    <div class="bar bar21" style="height: 0;"></div>
+    <div class="bar bar22" style="height: 0;"></div>
+    <div class="bar bar23" style="height: 0;"></div>
+    <div class="bar bar24" style="height: 0;"></div>
+    <div class="bar bar25" style="height: 0;"></div>
+    <div class="bar bar26" style="height: 0;"></div>
+    <div class="bar bar27" style="height: 0;"></div>
+    <div class="bar bar28" style="height: 0;"></div>
+    <div class="bar bar29" style="height: 0;"></div>
+    <div class="bar bar30" style="height: 0;"></div>
 </div>
 
     
@@ -345,7 +385,7 @@ function updatePressureReadings(newReading) {
     data.unshift(result2);
     
     // Remove the oldest reading if the array length exceeds
-    if (data.length > 10) {
+    if (data.length > 30) {
         data.pop();
     }
 }
