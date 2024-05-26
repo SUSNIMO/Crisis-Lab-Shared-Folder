@@ -329,8 +329,8 @@ table {
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
       <tr>
-        <th colspan="1"><div class="heading">Pin</div></th>
-        <th colspan="1"><div class="heading">Bits</div></th>
+        <th colspan="1"><div class="heading">Sensors</div></th>
+        <th colspan="1"><div class="heading">Data</div></th>
       </tr>
       <tr>
         <td><div class="bodytext">Pressure</div></td>
@@ -407,7 +407,36 @@ table {
     <div class="barA barAB" style="height: 0;"></div>
 </div>
 
+<div>
+  <table style="width:50%">
+    <colgroup>
+      <col span="1" style="background-color:rgb(230,230,230); width: 20%; color:#000000 ;">
+      <col span="1" style="background-color:rgb(200,200,200); width: 15%; color:#000000 ;">
+      <col span="1" style="background-color:rgb(180,180,180); width: 15%; color:#000000 ;">
+    </colgroup>
+      <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+      <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+      <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+    <tr>
+        <th colspan="1"><div class="heading"> </div></th>
+        <th colspan="1"><div class="heading"> </div></th>
+        <th colspan="1"><div class="heading"> </div></th>
+    </tr>
+    <tr>
+      <td colspan="1"><label for="inputField">Enter Message:</label></td>
+      <td colspan="1"><input type="text" id="inputField"></td>
+      <td colspan="1"><button onclick="displayInput()">Submit Input</button></td>
+    </tr>
     
+    <tr>
+      <td>Threshold</td>
+      <td><div id="displayDiv"></div></td>
+      <td>(hPa)</td>
+    </tr> 
+  
+  </table>
+</div>
+
   </main>
 
     <footer div class="foot" id = "temp" >ESP32 Web Page Creation and Data Update Demo</div></footer>
@@ -416,8 +445,33 @@ table {
 
 
   <script type = "text/javascript">
-  var threshold = 150;
+  var threshold = 0;
   var data = [];
+  var userInputAsNumber = 0;
+  var maxData = 2000;
+  var maxHeight = 200;
+
+  function displayInput() {
+            // Get the value entered by the user
+            var userInput = document.getElementById("inputField").value;
+            
+            // Parse the user input as a float
+            var inputNumber = parseFloat(userInput);
+            
+            // Check if the parsed input is a valid number
+            if (!isNaN(inputNumber)) {
+                // If it's a valid number, add it to the existing total
+
+                //processed for bar threshold
+                threshold = inputNumber;
+                userInputAsNumber = (inputNumber/maxData) * maxHeight;
+                userInputAsNumber = Math.floor(userInputAsNumber);
+            }
+            // Update the display div with the updated total
+            document.getElementById("displayDiv").innerHTML = threshold;
+
+            updateBarHeights();
+        }
 
   function updateBarHeights() {
 // Select each bar and set its height according to data values
@@ -427,7 +481,7 @@ table {
     });
     var barsA = document.querySelectorAll('.barA');
     barsA.forEach((barA) => {
-        barA.style.height = `${threshold}px`;
+        barA.style.height = `${userInputAsNumber}px`;
     });
 }
   
@@ -448,9 +502,6 @@ table {
 
 // Function to update pressure readings and shift previous values
 function updatePressureReadings(newReading) {
-
-    var maxData = 2000;
-    var maxHeight = 200;
 
     var result1 = (newReading / maxData) * maxHeight;
     var result2 = Math.floor(result1);
