@@ -228,6 +228,15 @@ table {
         bottom: 0;
     }
 
+    .barA {
+        background-color: #FF0000;
+        width: 5px; /* Width of each bar */
+        position: absolute;
+        bottom: 0;
+    }
+
+    .barAB { left: 300px; }
+
     //HEH bars
     .bar1 { left: 5px; }
     .bar2 { left: 5px; }
@@ -395,6 +404,7 @@ table {
     <div class="bar bar58" style="height: 0;"></div>
     <div class="bar bar59" style="height: 0;"></div>
     <div class="bar bar60" style="height: 0;"></div>
+    <div class="barA barAB" style="height: 0;"></div>
 </div>
 
     
@@ -406,7 +416,7 @@ table {
 
 
   <script type = "text/javascript">
-
+  var threshold = 150;
   var data = [];
 
   function updateBarHeights() {
@@ -414,6 +424,10 @@ table {
     var bars = document.querySelectorAll('.bar');
     bars.forEach((bar, index) => {
       bar.style.height = `${data[index]}px`;
+    });
+    var barsA = document.querySelectorAll('.barA');
+    barsA.forEach((barA) => {
+        barA.style.height = `${threshold}px`;
     });
 }
   
