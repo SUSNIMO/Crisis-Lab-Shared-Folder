@@ -3,8 +3,6 @@ Wellington College Team
 
 
 Teams mates:
-Rohit Medarametla
-Avie Lal
-Matthew Misa
+Rohit Medarametla, Avie Lal, Matthew Misa
 
-dunno the team names lol
+dunno the team name yet lol
