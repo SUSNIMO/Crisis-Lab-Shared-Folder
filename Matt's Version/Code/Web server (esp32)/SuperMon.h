@@ -217,8 +217,8 @@ table {
 
     .chart {
         border: 1px solid #ccc;
-        width: 300px;
-        height: 200px;
+        width: 450px;
+        height: 300px;
         position: relative;
     }
     .bar {
@@ -298,6 +298,57 @@ table {
     .bar58 { left: 285px; }
     .bar59 { left: 290px; }
     .bar60 { left: 295px; }
+    .bar61 { left: 300px; }
+    .bar62 { left: 305px; }
+    .bar63 { left: 310px; }
+    .bar64 { left: 315px; }
+    .bar65 { left: 320px; }
+    .bar66 { left: 325px; }
+    .bar67 { left: 330px; }
+    .bar68 { left: 335px; }
+    .bar69 { left: 340px; }
+    .bar70 { left: 345px; }
+    .bar71 { left: 350px; }
+    .bar72 { left: 355px; }
+    .bar73 { left: 360px; }
+    .bar74 { left: 365px; }
+    .bar75 { left: 370px; }
+    .bar76 { left: 375px; }
+    .bar77 { left: 380px; }
+    .bar78 { left: 385px; }
+    .bar79 { left: 390px; }
+    .bar80 { left: 395px; }
+    .bar81 { left: 400px; }
+    .bar82 { left: 405px; }
+    .bar83 { left: 410px; }
+    .bar84 { left: 415px; }
+    .bar85 { left: 420px; }
+    .bar86 { left: 425px; }
+    .bar87 { left: 430px; }
+    .bar88 { left: 435px; }
+    .bar89 { left: 440px; }
+    .bar90 { left: 445px; }
+    
+	
+	.line {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: var(--y-value);
+			transition: height 0.5s ease-in-out;
+			border-top: 1px solid #000000;
+			font-size: 10px;
+		}
+
+    .threshold {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: var(--y-value);
+			transition: height 0.5s ease-in-out;
+			border-top: 1px solid #FF0000;
+			font-size: 10px;
+		}
   </style>
 </head>
 
@@ -404,7 +455,44 @@ table {
     <div class="bar bar58" style="height: 0;"></div>
     <div class="bar bar59" style="height: 0;"></div>
     <div class="bar bar60" style="height: 0;"></div>
+	  <div class="bar bar61" style="height: 0;"></div>
+    <div class="bar bar62" style="height: 0;"></div>
+    <div class="bar bar63" style="height: 0;"></div>
+    <div class="bar bar64" style="height: 0;"></div>
+    <div class="bar bar65" style="height: 0;"></div>
+    <div class="bar bar66" style="height: 0;"></div>
+    <div class="bar bar67" style="height: 0;"></div>
+    <div class="bar bar68" style="height: 0;"></div>
+    <div class="bar bar69" style="height: 0;"></div>
+    <div class="bar bar70" style="height: 0;"></div>
+    <div class="bar bar71" style="height: 0;"></div>
+    <div class="bar bar72" style="height: 0;"></div>
+    <div class="bar bar73" style="height: 0;"></div>
+    <div class="bar bar74" style="height: 0;"></div>
+    <div class="bar bar75" style="height: 0;"></div>
+    <div class="bar bar76" style="height: 0;"></div>
+    <div class="bar bar77" style="height: 0;"></div>
+    <div class="bar bar78" style="height: 0;"></div>
+    <div class="bar bar79" style="height: 0;"></div>
+    <div class="bar bar80" style="height: 0;"></div>
+    <div class="bar bar81" style="height: 0;"></div>
+    <div class="bar bar82" style="height: 0;"></div>
+    <div class="bar bar83" style="height: 0;"></div>
+    <div class="bar bar84" style="height: 0;"></div>
+    <div class="bar bar85" style="height: 0;"></div>
+    <div class="bar bar86" style="height: 0;"></div>
+    <div class="bar bar87" style="height: 0;"></div>
+    <div class="bar bar88" style="height: 0;"></div>
+    <div class="bar bar89" style="height: 0;"></div>
+    <div class="bar bar90" style="height: 0;"></div>
     <div class="barA barAB" style="height: 0;"></div>
+
+    <div class="line" style="--y-value: 100%;">2000</div>
+    <div class="line" style="--y-value: 75%;">1500</div>
+    <div class="line" style="--y-value: 50%;">1000</div>
+    <div class="line" style="--y-value: 25%;">500</div>
+    
+    <div class="threshold" id="lineElement"></div>
 </div>
 
 <div>
@@ -449,7 +537,7 @@ table {
   var data = [];
   var userInputAsNumber = 0;
   var maxData = 2000;
-  var maxHeight = 200;
+  var maxHeight = 300;
 
   function displayInput() {
             // Get the value entered by the user
@@ -465,10 +553,14 @@ table {
                 //processed for bar threshold
                 threshold = inputNumber;
                 userInputAsNumber = (inputNumber/maxData) * maxHeight;
+                thresholdPercentage = (inputNumber/maxData) * 100;
+                thresholdPercentage = Math.floor(thresholdPercentage);
                 userInputAsNumber = Math.floor(userInputAsNumber);
             }
             // Update the display div with the updated total
             document.getElementById("displayDiv").innerHTML = threshold;
+            document.getElementById("lineElement").style.setProperty("--y-value", thresholdPercentage + "%");
+            document.getElementById("lineElement").innerHTML = threshold;
 
             updateBarHeights();
         }
@@ -510,7 +602,7 @@ function updatePressureReadings(newReading) {
     data.unshift(result2);
     
     // Remove the oldest reading if the array length exceeds
-    if (data.length > 60) {
+    if (data.length > 90) {
         data.pop();
     }
 }
