@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input to Display</title>
+</head>
+<body>
+    <div>
+        <label for="inputField">Enter Your Message:</label>
+        <input type="text" id="inputField">
+        <button onclick="displayInput()">Display Input</button>
+    </div>
+    <div id="displayDiv"></div>
+
+    <script>
+	var userInputAsNumber = 0;
+        function displayInput() {
+            // Get the value entered by the user
+            var userInput = document.getElementById("inputField").value;
+            
+            // Parse the user input as a float
+            var inputNumber = parseFloat(userInput);
+            
+            // Check if the parsed input is a valid number
+            if (!isNaN(inputNumber)) {
+                // If it's a valid number, add it to the existing total
+                userInputAsNumber += inputNumber;
+            }
+            
+            // Update the display div with the updated total
+            document.getElementById("displayDiv").innerHTML = userInputAsNumber;
+        }
+    </script>
+</body>
+</html>

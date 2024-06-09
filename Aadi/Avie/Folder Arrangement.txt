@@ -1,0 +1,14 @@
+HI guys, this is you code:
+
+any code you guys modify or do will be placed on your own respective folders
+
+this is how your folders are structured
+your name folder/ (you place all your stuff here)
+	Code folder/ (place all your code here) (there's a dummy code there so dw)
+
+the rest is now up to you, you can make or delete or change anything WITHIN your
+folder. Do not tamper with the other folders that are outside your name folder.
+
+This way, we can prevent the loss or missarrangement of code
+
+Thank you for complying :)
