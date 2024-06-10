@@ -17,6 +17,11 @@
 #define AP_PASS "password123"
 
 //DATA
+int Sensor;
+int Control;
+int Alarm;
+int dummy;
+
 std::string pressure_data;
 std::string temp_data;
 
@@ -40,16 +45,47 @@ WebServer server(80);
 
 //Hi IG
 
+void Find(std::string text, int& ID, std::string search, int start, int length)
+{
+  ID = text.find(search.c_str(), start, length);
+  if (ID != std::string::npos) {
+        ID = 1; 
+    } else {
+        ID = 0; 
+    }
+}
+
 //(C): 24.84  (hPa): 0982
 void temp(const char *data)
 {
-  temp_data = std::string(data).substr(5, 2);
+  temp_data = std::string(data).substr(11, 2);
 }
 
 void pressure(const char *data)
 {
-  pressure_data = std::string(data).substr(19, 4);
+  pressure_data = std::string(data).substr(25, 4);
 }
+
+void verifyData(std::string message){
+  //message example: S01 - (C): 24.84  (hPa): 0982
+  //message example: C01 - (hPa): 0982
+  Find(message, Sensor, "S", 0, 1);
+  Find(message, Control, "C", 0, 1);
+  Find(message, Alarm, "A", 0, 1);
+  Find(message, dummy, "01", 1, 2);
+  
+  if (dummy){
+    if (Sensor){
+      temp(message.c_str());
+      pressure(message.c_str());
+    }
+
+    if (Alarm){
+      
+    }
+  }
+}
+
 
 void formatMacAddress(const uint8_t *macAddr, char *buffer, int maxLength)
 {
@@ -71,9 +107,7 @@ void receiveCallback(const uint8_t *macAddr, const uint8_t *data, int dataLen)
   //Serial.printf("Received message from: %s - %s\n", macStr, buffer);
   // what are our instructions
   //Serial.print(buffer);
-  temp(buffer);
-  pressure(buffer);
-
+  verifyData(buffer);
 }
 
 // callback when data is sent

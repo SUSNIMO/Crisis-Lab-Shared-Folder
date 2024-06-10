@@ -215,13 +215,32 @@ table {
       border-bottom-right-radius: 5px;
     }
 
-    .chart {
+	.Charts {
+      display: flex;
+    }
+
+    .Wchart {
         border: 1px solid #ccc;
         width: 450px;
         height: 300px;
         position: relative;
     }
+	
+	.Pchart {
+        border: 1px solid #ccc;
+        width: 450px;
+        height: 300px;
+        position: relative;
+    }
+	
     .bar {
+        background-color: #007bff;
+        width: 5px; /* Width of each bar */
+        position: absolute;
+        bottom: 0;
+    }
+	
+	.barw {
         background-color: #007bff;
         width: 5px; /* Width of each bar */
         position: absolute;
@@ -349,6 +368,16 @@ table {
 			border-top: 1px solid #FF0000;
 			font-size: 10px;
 		}
+		
+	.current {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: var(--y-value);
+			transition: height 0.5s ease-in-out;
+			border-top: 2px solid ##FFFF00;
+			font-size: 10px;
+		}
   </style>
 </head>
 
@@ -393,8 +422,29 @@ table {
       </tr>
       </table>
     </div>
+	
+	<div>
+	
+	<div class="category">Charts</div>
+	
+	<table style="width:905px">
+	<colgroup>
+        <col span="1" style="background-color:rgb(230,230,230); width: 50%; color:#000000 ;">
+        <col span="1" style="background-color:rgb(200,200,200); width: 50%%; color:#000000 ;">
+      </colgroup>
+	<col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+    <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+    <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+		<tr>
+			<th colspan="1"><div class="heading">Pressure (hpa)</div></th>
+			<th colspan="1"><div class="heading">Water Height (cm)</div></th>
+		</tr>
+	</table>
+</div>
+	
+<div class="Charts">
 
-  <div class="chart">
+  <div class="Wchart">
     <div class="bar bar1" style="height: 0;"></div>
     <div class="bar bar2" style="height: 0;"></div>
     <div class="bar bar3" style="height: 0;"></div>
@@ -455,7 +505,7 @@ table {
     <div class="bar bar58" style="height: 0;"></div>
     <div class="bar bar59" style="height: 0;"></div>
     <div class="bar bar60" style="height: 0;"></div>
-	  <div class="bar bar61" style="height: 0;"></div>
+	<div class="bar bar61" style="height: 0;"></div>
     <div class="bar bar62" style="height: 0;"></div>
     <div class="bar bar63" style="height: 0;"></div>
     <div class="bar bar64" style="height: 0;"></div>
@@ -492,15 +542,122 @@ table {
     <div class="line" style="--y-value: 50%;">1000</div>
     <div class="line" style="--y-value: 25%;">500</div>
     
-    <div class="threshold" id="lineElement"></div>
+    <div class="threshold" id="PlineElement"></div>
+</div>
+
+<div class="Pchart">
+    <div class="barw bar1" style="height: 0;"></div>
+    <div class="barw bar2" style="height: 0;"></div>
+    <div class="barw bar3" style="height: 0;"></div>
+    <div class="barw bar4" style="height: 0;"></div>
+    <div class="barw bar5" style="height: 0;"></div>
+    <div class="barw bar6" style="height: 0;"></div>
+    <div class="barw bar7" style="height: 0;"></div>
+    <div class="barw bar8" style="height: 0;"></div>
+    <div class="barw bar9" style="height: 0;"></div>
+    <div class="barw bar10" style="height: 0;"></div>
+    <div class="barw bar11" style="height: 0;"></div>
+    <div class="barw bar12" style="height: 0;"></div>
+    <div class="barw bar13" style="height: 0;"></div>
+    <div class="barw bar14" style="height: 0;"></div>
+    <div class="barw bar15" style="height: 0;"></div>
+    <div class="barw bar16" style="height: 0;"></div>
+    <div class="barw bar17" style="height: 0;"></div>
+    <div class="barw bar18" style="height: 0;"></div>
+    <div class="barw bar19" style="height: 0;"></div>
+    <div class="barw bar20" style="height: 0;"></div>
+    <div class="barw bar21" style="height: 0;"></div>
+    <div class="barw bar22" style="height: 0;"></div>
+    <div class="barw bar23" style="height: 0;"></div>
+    <div class="barw bar24" style="height: 0;"></div>
+    <div class="barw bar25" style="height: 0;"></div>
+    <div class="barw bar26" style="height: 0;"></div>
+    <div class="barw bar27" style="height: 0;"></div>
+    <div class="barw bar28" style="height: 0;"></div>
+    <div class="barw bar29" style="height: 0;"></div>
+    <div class="barw bar30" style="height: 0;"></div>
+    <div class="barw bar31" style="height: 0;"></div>
+    <div class="barw bar32" style="height: 0;"></div>
+    <div class="barw bar33" style="height: 0;"></div>
+    <div class="barw bar34" style="height: 0;"></div>
+    <div class="barw bar35" style="height: 0;"></div>
+    <div class="barw bar36" style="height: 0;"></div>
+    <div class="barw bar37" style="height: 0;"></div>
+    <div class="barw bar38" style="height: 0;"></div>
+    <div class="barw bar39" style="height: 0;"></div>
+    <div class="barw bar40" style="height: 0;"></div>
+    <div class="barw bar41" style="height: 0;"></div>
+    <div class="barw bar42" style="height: 0;"></div>
+    <div class="barw bar43" style="height: 0;"></div>
+    <div class="barw bar44" style="height: 0;"></div>
+    <div class="barw bar45" style="height: 0;"></div>
+    <div class="barw bar46" style="height: 0;"></div>
+    <div class="barw bar47" style="height: 0;"></div>
+    <div class="barw bar48" style="height: 0;"></div>
+    <div class="barw bar49" style="height: 0;"></div>
+    <div class="barw bar50" style="height: 0;"></div>
+    <div class="barw bar51" style="height: 0;"></div>
+    <div class="barw bar52" style="height: 0;"></div>
+    <div class="barw bar53" style="height: 0;"></div>
+    <div class="barw bar54" style="height: 0;"></div>
+    <div class="barw bar55" style="height: 0;"></div>
+    <div class="barw bar56" style="height: 0;"></div>
+    <div class="barw bar57" style="height: 0;"></div>
+    <div class="barw bar58" style="height: 0;"></div>
+    <div class="barw bar59" style="height: 0;"></div>
+    <div class="barw bar60" style="height: 0;"></div>
+	<div class="barw bar61" style="height: 0;"></div>
+    <div class="barw bar62" style="height: 0;"></div>
+    <div class="barw bar63" style="height: 0;"></div>
+    <div class="barw bar64" style="height: 0;"></div>
+    <div class="barw bar65" style="height: 0;"></div>
+    <div class="barw bar66" style="height: 0;"></div>
+    <div class="barw bar67" style="height: 0;"></div>
+    <div class="barw bar68" style="height: 0;"></div>
+    <div class="barw bar69" style="height: 0;"></div>
+    <div class="barw bar70" style="height: 0;"></div>
+    <div class="barw bar71" style="height: 0;"></div>
+    <div class="barw bar72" style="height: 0;"></div>
+    <div class="barw bar73" style="height: 0;"></div>
+    <div class="barw bar74" style="height: 0;"></div>
+    <div class="barw bar75" style="height: 0;"></div>
+    <div class="barw bar76" style="height: 0;"></div>
+    <div class="barw bar77" style="height: 0;"></div>
+    <div class="barw bar78" style="height: 0;"></div>
+    <div class="barw bar79" style="height: 0;"></div>
+    <div class="barw bar80" style="height: 0;"></div>
+    <div class="barw bar81" style="height: 0;"></div>
+    <div class="barw bar82" style="height: 0;"></div>
+    <div class="barw bar83" style="height: 0;"></div>
+    <div class="barw bar84" style="height: 0;"></div>
+    <div class="barw bar85" style="height: 0;"></div>
+    <div class="barw bar86" style="height: 0;"></div>
+    <div class="barw bar87" style="height: 0;"></div>
+    <div class="barw bar88" style="height: 0;"></div>
+    <div class="barw bar89" style="height: 0;"></div>
+    <div class="barw bar90" style="height: 0;"></div>
+    <div class="barA barAB" style="height: 0;"></div>
+
+    <div class="line" style="--y-value: 100%;">300</div>
+    <div class="line" style="--y-value: 75%;">250</div>
+    <div class="line" style="--y-value: 50%;">0</div>
+    <div class="line" style="--y-value: 25%;">-250</div>
+    
+    <div class="threshold" id="WlineElement"></div>
+	<div class="current" id="WClineElement"></div>
+</div>
+
 </div>
 
 <div>
-  <table style="width:50%">
+	
+	<div class="category">Controls</div>
+
+  <table style="width:900">
     <colgroup>
       <col span="1" style="background-color:rgb(230,230,230); width: 20%; color:#000000 ;">
-      <col span="1" style="background-color:rgb(200,200,200); width: 15%; color:#000000 ;">
-      <col span="1" style="background-color:rgb(180,180,180); width: 15%; color:#000000 ;">
+      <col span="1" style="background-color:rgb(200,200,200); width: 1%; color:#000000 ;">
+      <col span="1" style="background-color:rgb(180,180,180); width: 1%; color:#000000 ;">
     </colgroup>
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
@@ -511,15 +668,27 @@ table {
         <th colspan="1"><div class="heading"> </div></th>
     </tr>
     <tr>
-      <td colspan="1"><label for="inputField">Enter Message:</label></td>
-      <td colspan="1"><input type="text" id="inputField"></td>
-      <td colspan="1"><button onclick="displayInput()">Submit Input</button></td>
+      <td colspan="1"><label for="PinputField">Threshold Pressure:</label></td>
+      <td colspan="1"><input type="text" id="PinputField"></td>
+      <td colspan="1"><button onclick="PdisplayInput()">Submit</button></td>
     </tr>
     
+	<tr>
+      <td colspan="1"><label for="WinputField">Threshold Water Height:</label></td>
+      <td colspan="1"><input type="text" id="WinputField"></td>
+      <td colspan="1"><button onclick="WdisplayInput()">Submit</button></td>
+    </tr>
+	
     <tr>
       <td>Threshold</td>
-      <td><div id="displayDiv"></div></td>
+      <td><div id="PdisplayDiv"></div></td>
       <td>(hPa)</td>
+    </tr> 
+  
+	<tr>
+      <td>Wave height</td>
+      <td><div id="WdisplayDiv"></div></td>
+      <td>(cm)</td>
     </tr> 
   
   </table>
@@ -533,15 +702,37 @@ table {
 
 
   <script type = "text/javascript">
-  var threshold = 0;
-  var data = [];
   var userInputAsNumber = 0;
-  var maxData = 2000;
   var maxHeight = 300;
-
-  function displayInput() {
+  
+  var Pdata = [];
+  var PmaxData = 2000;
+  var Pthreshold = 0;
+  
+  var Wdata = [];
+  var WmaxData = 30;
+  var Wthreshold = 0;
+  var Base = 1000;
+  var Density = 1000; // Density in kg/m^3
+  var Gravity = 9.81
+	
+	//debugging 
+	
+	/*
+	var Pdata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90];
+    var Wdata = [90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+	
+	PupdateBarHeights();
+	WupdateBarHeights();
+	
+	PupdatePressureReadings(1000);
+	WupdatePressureReadings(1000);
+	
+	*/
+	
+  function PdisplayInput() {
             // Get the value entered by the user
-            var userInput = document.getElementById("inputField").value;
+            var userInput = document.getElementById("PinputField").value;
             
             // Parse the user input as a float
             var inputNumber = parseFloat(userInput);
@@ -551,29 +742,77 @@ table {
                 // If it's a valid number, add it to the existing total
 
                 //processed for bar threshold
-                threshold = inputNumber;
-                userInputAsNumber = (inputNumber/maxData) * maxHeight;
-                thresholdPercentage = (inputNumber/maxData) * 100;
-                thresholdPercentage = Math.floor(thresholdPercentage);
+				threshold = inputNumber;
+				//Pressure
+                Pthreshold = threshold;
+                PuserInputAsNumber = (inputNumber/PmaxData) * maxHeight;
+                PthresholdPercentage = (inputNumber/PmaxData) * 100;
+                PthresholdPercentage = Math.floor(PthresholdPercentage);
                 userInputAsNumber = Math.floor(userInputAsNumber);
+				
+				//Height
+				Wthreshold = 100 * (threshold - Base) / (Density * Gravity);
+				WthresholdPercentage = Wthreshold + 15;
+				WthresholdPercentage = (WthresholdPercentage / WmaxData) * 100;
+				WthresholdPercentage = Math.floor(WthresholdPercentage);
+				
             }
             // Update the display div with the updated total
-            document.getElementById("displayDiv").innerHTML = threshold;
-            document.getElementById("lineElement").style.setProperty("--y-value", thresholdPercentage + "%");
-            document.getElementById("lineElement").innerHTML = threshold;
-
-            updateBarHeights();
+            document.getElementById("PdisplayDiv").innerHTML = Pthreshold;
+            document.getElementById("PlineElement").style.setProperty("--y-value", PthresholdPercentage + "%");
+            document.getElementById("PlineElement").innerHTML = Pthreshold;
+			
+			document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
+			document.getElementById("WlineElement").style.setProperty("--y-value", WthresholdPercentage + "%");
+            document.getElementById("WlineElement").innerHTML = Wthreshold;
         }
+		
+  function WdisplayInput() {
+			// Get the value entered by the user
+            var userInput = document.getElementById("WinputField").value;
+            
+            // Parse the user input as a float
+            var inputNumber = parseFloat(userInput);
+            
+            // Check if the parsed input is a valid number
+            if (!isNaN(inputNumber)) {
+                // If it's a valid number, add it to the existing total
+				threshold = inputNumber;
+				
+				//pressure
+				Pthreshold = ((threshold / 100) * (Density * Gravity)) + Base;
+				PthresholdPercentage = (Pthreshold / PmaxData) * 100;
+				PthresholdPercentage = Math.floor(PthresholdPercentage);
+				
+				//height
+				Wthreshold = threshold;
+				WthresholdPercentage = Wthreshold + 15;
+				WthresholdPercentage = (WthresholdPercentage / WmaxData) * 100;
+				WthresholdPercentage = Math.floor(WthresholdPercentage);
+			}
+			// Update the display div with the updated total
+            document.getElementById("PdisplayDiv").innerHTML = Pthreshold;
+            document.getElementById("PlineElement").style.setProperty("--y-value", PthresholdPercentage + "%");
+            document.getElementById("PlineElement").innerHTML = Pthreshold;
+			
+			document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
+			document.getElementById("WlineElement").style.setProperty("--y-value", WthresholdPercentage + "%");
+            document.getElementById("WlineElement").innerHTML = Wthreshold;
+   }
 
-  function updateBarHeights() {
+  function PupdateBarHeights() {
 // Select each bar and set its height according to data values
     var bars = document.querySelectorAll('.bar');
     bars.forEach((bar, index) => {
-      bar.style.height = `${data[index]}px`;
+      bar.style.height = `${Pdata[index]}px`;
     });
-    var barsA = document.querySelectorAll('.barA');
-    barsA.forEach((barA) => {
-        barA.style.height = `${userInputAsNumber}px`;
+}
+  
+  function WupdateBarHeights() {
+// Select each bar and set its height according to data values
+    var bars = document.querySelectorAll('.barw');
+    bars.forEach((bar, index) => {
+      bar.style.height = `${Wdata[index]}px`;
     });
 }
   
@@ -593,17 +832,40 @@ table {
 	
 
 // Function to update pressure readings and shift previous values
-function updatePressureReadings(newReading) {
+function PupdatePressureReadings(newReading) {
 
-    var result1 = (newReading / maxData) * maxHeight;
-    var result2 = Math.floor(result1);
+    result = (newReading / PmaxData) * maxHeight;
+    result = Math.floor(result);
 
     // Add the new reading to the beginning of the array
-    data.unshift(result2);
+    Pdata.unshift(result);
     
     // Remove the oldest reading if the array length exceeds
-    if (data.length > 90) {
-        data.pop();
+    if (Pdata.length > 90) {
+        Pdata.pop();
+    }
+}
+
+function WupdatePressureReadings(newReading) {
+
+    resultA = 100 * (newReading - Base) / (Density * Gravity);
+	result = resultA + 15;
+	
+	result1 = (result / WmaxData) * maxHeight;
+	result1 = Math.floor(result);
+	
+	result2 = (result / WmaxData) * 100;
+	result2 = Math.floor(result2);
+	
+	document.getElementById("WClineElement").style.setProperty("--y-value", result2 + "%");
+    document.getElementById("WClineElement").innerHTML = resultA;
+
+    // Add the new reading to the beginning of the array
+    Wdata.unshift(result1);
+    
+    // Remove the oldest reading if the array length exceeds
+    if (Wdata.length > 90) {
+        Wdata.pop();
     }
 }
 
@@ -637,8 +899,10 @@ function updatePressureReadings(newReading) {
       }
 
       updatePressureReadings(message);
-      updateBarHeights();
-      
+	  WupdatePressureReadings(message);
+      PupdateBarHeights();
+      WupdateBarHeights();
+	  
       barwidth = message / 4060;
       document.getElementById("b0").innerHTML=message;
       document.getElementById("b0").style.width=(barwidth+"%");
