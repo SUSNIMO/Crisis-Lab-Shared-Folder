@@ -417,6 +417,10 @@ table {
         <td><div class="bodytext">Pressure</div></td>
         <td><div class="tabledata" id = "b0"></div></td>
       </tr>
+	  <tr>
+        <td><div class="bodytext">Water Height</div></td>
+        <td><div class="tabledata" id = "w0"></div></td>
+      </tr>
       <tr>
         <td><div class="bodytext">Temperature</div></td>
         <td><div class="tabledata" id = "b1"></div></td>
@@ -680,6 +684,12 @@ table {
       <td colspan="1"><button onclick="WdisplayInput()">Submit</button></td>
     </tr>
 	
+	<tr>
+      <td colspan="1"><label for="BinputField">Base Pressure:</label></td>
+      <td colspan="1"><input type="text" id="BinputField"></td>
+      <td colspan="1"><button onclick="BdisplayInput()">Submit</button></td>
+    </tr>
+	
     <tr>
       <td>Threshold</td>
       <td><div id="PdisplayDiv"></div></td>
@@ -690,6 +700,12 @@ table {
       <td>Wave height</td>
       <td><div id="WdisplayDiv"></div></td>
       <td>(cm)</td>
+    </tr> 
+	
+	<tr>
+      <td>Base Pressure</td>
+      <td><div id="BdisplayDiv"></div></td>
+      <td>(hPa)</td>
     </tr> 
   
   </table>
@@ -730,6 +746,17 @@ table {
 	WupdatePressureReadings(1000);
 	
 	*/
+	
+  function BdisplayInput() {
+		var userInput = document.getElementById("BinputField").value;
+		
+		var inputNumber = parseFloat(userInput);
+		// Check if the parsed input is a valid number
+		if (!isNaN(inputNumber)) {
+			Base = inputNumber;
+		}
+		document.getElementById("BdisplayDiv").innerHTML = Base;
+  }	
 	
   function PdisplayInput() {
             // Get the value entered by the user
@@ -852,6 +879,7 @@ function WupdatePressureReadings(newReading) {
 	result = newReading;
 
     resultA = 100 * (result - Base) / (Density * Gravity);
+	resultA = parseFloat(resultA.toFixed(2));
 	resultB = resultA + 15;
 	
 	result1 = (resultB / WmaxData) * maxHeight;
@@ -862,6 +890,7 @@ function WupdatePressureReadings(newReading) {
 	
 	document.getElementById("WClineElement").style.setProperty("--y-value", result2 + "%");
     document.getElementById("WClineElement").innerHTML = resultA;
+	document.getElementById("w0").innerHTML = resultA;
 
     // Add the new reading to the beginning of the array
     Wdata.unshift(result1);
