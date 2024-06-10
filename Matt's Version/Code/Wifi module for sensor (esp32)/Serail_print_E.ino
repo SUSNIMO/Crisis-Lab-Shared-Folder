@@ -7,6 +7,8 @@
 const int bufferSize = 64; // Adjust the buffer size as needed
 char buffer[bufferSize];
 int bufferIndex = 0;
+String data;
+
 
 void formatMacAddress(const uint8_t *macAddr, char *buffer, int maxLength)
 {
@@ -130,15 +132,19 @@ void loop() {
   
   if (bufferIndex > 0) { // Check if there is data in the buffer
     // Process the data in the buffer
-    processBuffer(buffer, bufferIndex);
+    //message example: S01 - (C): 24.84  (hPa): 0982
+    data = "S01 - " + String(buffer);
+    processBuffer(data.c_str(), bufferIndex);
     // Clear the buffer after processing
     bufferIndex = 0;
+    memset(buffer, 0, bufferSize); // Clear the buffer
   }
 }
 
-void processBuffer(char *buffer, int length) {
+void processBuffer(const char *buffer, int length) {
   // Your data processing code here
   // Example: Print the received data
-  Serial.write(buffer, length);
+  //Serial.write(buffer, length);
+  Serial.print(buffer);
   broadcast(buffer);
 }
