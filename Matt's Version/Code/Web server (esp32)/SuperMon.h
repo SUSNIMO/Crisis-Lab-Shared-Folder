@@ -216,22 +216,22 @@ table {
     }
 
 	.Charts {
-	  width: 1000px;
-      height: 300px;
+	  width: 100%;
+      height: 500px;
       display: flex;
     }
 
     .Wchart {
         border: 1px solid #ccc;
         width: 450px;
-        height: 300px;
+        height: 100%;
         position: relative;
     }
 	
 	.Pchart {
         border: 1px solid #ccc;
         width: 450px;
-        height: 300px;
+        height: 100%;
         position: relative;
     }
 	
@@ -259,96 +259,106 @@ table {
     .barAB { left: 300px; }
 
     //HEH bars
-    .bar1 { left: 5px; }
-    .bar2 { left: 5px; }
-    .bar3 { left: 10px; }
-    .bar4 { left: 15px; }
-    .bar5 { left: 20px; }
-    .bar6 { left: 25px; }
-    .bar7 { left: 30px; }
-    .bar8 { left: 35px; }
-    .bar9 { left: 40px; }
-    .bar10 { left: 45px; }
-    .bar11 { left: 50px; }
-    .bar12 { left: 55px; }
-    .bar13 { left: 60px; }
-    .bar14 { left: 65px; }
-    .bar15 { left: 70px; }
-    .bar16 { left: 75px; }
-    .bar17 { left: 80px; }
-    .bar18 { left: 85px; }
-    .bar19 { left: 90px; }
-    .bar20 { left: 95px; }
-    .bar21 { left: 100px; }
-    .bar22 { left: 105px; }
-    .bar23 { left: 110px; }
-    .bar24 { left: 115px; }
-    .bar25 { left: 120px; }
-    .bar26 { left: 125px; }
-    .bar27 { left: 130px; }
-    .bar28 { left: 135px; }
-    .bar29 { left: 140px; }
-    .bar30 { left: 145px; }
-    .bar31 { left: 150px; }
-    .bar32 { left: 155px; }
-    .bar33 { left: 160px; }
-    .bar34 { left: 165px; }
-    .bar35 { left: 170px; }
-    .bar36 { left: 175px; }
-    .bar37 { left: 180px; }
-    .bar38 { left: 185px; }
-    .bar39 { left: 190px; }
-    .bar40 { left: 195px; }
-    .bar41 { left: 200px; }
-    .bar42 { left: 205px; }
-    .bar43 { left: 210px; }
-    .bar44 { left: 215px; }
-    .bar45 { left: 220px; }
-    .bar46 { left: 225px; }
-    .bar47 { left: 230px; }
-    .bar48 { left: 235px; }
-    .bar49 { left: 240px; }
-    .bar50 { left: 245px; }
-    .bar51 { left: 250px; }
-    .bar52 { left: 255px; }
-    .bar53 { left: 260px; }
-    .bar54 { left: 265px; }
-    .bar55 { left: 270px; }
-    .bar56 { left: 275px; }
-    .bar57 { left: 280px; }
-    .bar58 { left: 285px; }
-    .bar59 { left: 290px; }
-    .bar60 { left: 295px; }
-    .bar61 { left: 300px; }
-    .bar62 { left: 305px; }
-    .bar63 { left: 310px; }
-    .bar64 { left: 315px; }
-    .bar65 { left: 320px; }
-    .bar66 { left: 325px; }
-    .bar67 { left: 330px; }
-    .bar68 { left: 335px; }
-    .bar69 { left: 340px; }
-    .bar70 { left: 345px; }
-    .bar71 { left: 350px; }
-    .bar72 { left: 355px; }
-    .bar73 { left: 360px; }
-    .bar74 { left: 365px; }
-    .bar75 { left: 370px; }
-    .bar76 { left: 375px; }
-    .bar77 { left: 380px; }
-    .bar78 { left: 385px; }
-    .bar79 { left: 390px; }
-    .bar80 { left: 395px; }
-    .bar81 { left: 400px; }
-    .bar82 { left: 405px; }
-    .bar83 { left: 410px; }
-    .bar84 { left: 415px; }
-    .bar85 { left: 420px; }
-    .bar86 { left: 425px; }
-    .bar87 { left: 430px; }
-    .bar88 { left: 435px; }
-    .bar89 { left: 440px; }
-    .bar90 { left: 445px; }
+    .bar1 { left: 1%; }
+    .bar2 { left: 1%; }
+    .bar3 { left: 2%; }
+    .bar4 { left: 3%; }
+    .bar5 { left: 4%; }
+    .bar6 { left: 5%; }
+    .bar7 { left: 6%; }
+    .bar8 { left: 7%; }
+    .bar9 { left: 8%; }
+    .bar10 { left:9%; }
+    .bar11 { left: 10%; }
+    .bar12 { left: 11%; }
+    .bar13 { left: 12%; }
+    .bar14 { left: 13%; }
+    .bar15 { left: 14%; }
+    .bar16 { left: 15%; }
+    .bar17 { left: 16%; }
+    .bar18 { left: 17%; }
+    .bar19 { left: 18%; }
+    .bar20 { left: 19%; }
+    .bar21 { left: 20%; }
+    .bar22 { left: 21%; }
+    .bar23 { left: 22%; }
+    .bar24 { left: 23%; }
+    .bar25 { left: 24%; }
+    .bar26 { left: 25%; }
+    .bar27 { left: 26%; }
+    .bar28 { left: 27%; }
+    .bar29 { left: 28%; }
+    .bar30 { left: 29%; }
+    .bar31 { left: 30%; }
+    .bar32 { left: 31%; }
+    .bar33 { left: 32%; }
+    .bar34 { left: 33%; }
+    .bar35 { left: 34%; }
+    .bar36 { left: 35%; }
+    .bar37 { left: 36%; }
+    .bar38 { left: 37%; }
+    .bar39 { left: 38%; }
+    .bar40 { left: 39%; }
+    .bar41 { left: 40%; }
+    .bar42 { left: 41%; }
+    .bar43 { left: 42%; }
+    .bar44 { left: 43%; }
+    .bar45 { left: 44%; }
+    .bar46 { left: 45%; }
+    .bar47 { left: 46%; }
+    .bar48 { left: 47%; }
+    .bar49 { left: 48%; }
+    .bar50 { left: 49%; }
+    .bar51 { left: 50%; }
+    .bar52 { left: 51%; }
+    .bar53 { left: 52%; }
+    .bar54 { left: 53%; }
+    .bar55 { left: 54%; }
+    .bar56 { left: 55%; }
+    .bar57 { left: 56%; }
+    .bar58 { left: 57%; }
+    .bar59 { left: 58%; }
+    .bar60 { left: 59%; }
+    .bar61 { left: 60%; }
+    .bar62 { left: 61%; }
+    .bar63 { left: 62%; }
+    .bar64 { left: 63%; }
+    .bar65 { left: 64%; }
+    .bar66 { left: 65%; }
+    .bar67 { left: 66%; }
+    .bar68 { left: 67%; }
+    .bar69 { left: 68%; }
+    .bar70 { left: 69%; }
+    .bar71 { left: 70%; }
+    .bar72 { left: 71%; }
+    .bar73 { left: 72%; }
+    .bar74 { left: 73%; }
+    .bar75 { left: 74%; }
+    .bar76 { left: 75%; }
+    .bar77 { left: 76%; }
+    .bar78 { left: 77%; }
+    .bar79 { left: 78%; }
+    .bar80 { left: 79%; }
+    .bar81 { left: 80%; }
+    .bar82 { left: 81%; }
+    .bar83 { left: 82%; }
+    .bar84 { left: 83%; }
+    .bar85 { left: 84%; }
+    .bar86 { left: 85%; }
+    .bar87 { left: 86%; }
+    .bar88 { left: 87%; }
+    .bar89 { left: 88%; }
+    .bar90 { left: 89%; }
+	.bar91 { left: 90%; }
+    .bar92 { left: 91%; }
+    .bar93 { left: 92%; }
+    .bar94 { left: 93%; }
+    .bar95 { left: 94%; }
+    .bar96 { left: 95%; }
+    .bar97 { left: 96%; }
+    .bar98 { left: 97%; }
+    .bar99 { left: 98%; }
+    .bar100 { left: 99%; }
     
 	
 	.line {
@@ -540,6 +550,16 @@ table {
     <div class="bar bar88" style="height: 0;"></div>
     <div class="bar bar89" style="height: 0;"></div>
     <div class="bar bar90" style="height: 0;"></div>
+	<div class="bar bar91" style="height: 0;"></div>
+    <div class="bar bar92" style="height: 0;"></div>
+    <div class="bar bar93" style="height: 0;"></div>
+    <div class="bar bar94" style="height: 0;"></div>
+    <div class="bar bar95" style="height: 0;"></div>
+    <div class="bar bar96" style="height: 0;"></div>
+    <div class="bar bar97" style="height: 0;"></div>
+    <div class="bar bar98" style="height: 0;"></div>
+    <div class="bar bar99" style="height: 0;"></div>
+    <div class="bar bar100" style="height: 0;"></div>
     <div class="barA barAB" style="height: 0;"></div>
 
     <div class="line" style="--y-value: 100%;">2000</div>
@@ -641,6 +661,17 @@ table {
     <div class="barw bar88" style="height: 0;"></div>
     <div class="barw bar89" style="height: 0;"></div>
     <div class="barw bar90" style="height: 0;"></div>
+	<div class="barw bar90" style="height: 0;"></div>
+	<div class="barw bar91" style="height: 0;"></div>
+    <div class="barw bar92" style="height: 0;"></div>
+    <div class="barw bar93" style="height: 0;"></div>
+    <div class="barw bar94" style="height: 0;"></div>
+    <div class="barw bar95" style="height: 0;"></div>
+    <div class="barw bar96" style="height: 0;"></div>
+    <div class="barw bar97" style="height: 0;"></div>
+    <div class="barw bar98" style="height: 0;"></div>
+    <div class="barw bar99" style="height: 0;"></div>
+    <div class="barw bar100" style="height: 0;"></div>
     <div class="barA barAB" style="height: 0;"></div>
 
     <div class="line" style="--y-value: 100%;">15</div>
@@ -652,26 +683,17 @@ table {
 	<div class="current" id="WClineElement"></div>
 </div>
 
-</div>
-
 <div>
-	
-	<div class="category">Controls</div>
 
-  <table style="width:900">
+  <table style="width: 0%; height: 100%">
     <colgroup>
-      <col span="1" style="background-color:rgb(230,230,230); width: 20%; color:#000000 ;">
-      <col span="1" style="background-color:rgb(200,200,200); width: 1%; color:#000000 ;">
-      <col span="1" style="background-color:rgb(180,180,180); width: 1%; color:#000000 ;">
+      <col span="1" style="background-color:rgb(230,230,230); width: 1%; color:#000000 ; height: 16%;">
+      <col span="1" style="background-color:rgb(200,200,200); width: 1%; color:#000000 ; height: 16%;">
+      <col span="1" style="background-color:rgb(180,180,180); width: 1%; color:#000000 ; height: 16%;">
     </colgroup>
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
-    <tr>
-        <th colspan="1"><div class="heading"> </div></th>
-        <th colspan="1"><div class="heading"> </div></th>
-        <th colspan="1"><div class="heading"> </div></th>
-    </tr>
     <tr>
       <td colspan="1"><label for="PinputField">Threshold Pressure:</label></td>
       <td colspan="1"><input type="text" id="PinputField"></td>
@@ -688,7 +710,7 @@ table {
       <td colspan="1"><label for="BinputField">Base Pressure:</label></td>
       <td colspan="1"><input type="text" id="BinputField"></td>
       <td colspan="1"><button onclick="BdisplayInput()">Submit</button></td>
-    </tr>
+  </tr>
 	
     <tr>
       <td>Threshold</td>
@@ -711,6 +733,8 @@ table {
   </table>
 </div>
 
+
+</div>
   </main>
 
     <footer div class="foot" id = "temp" >ESP32 Web Page Creation and Data Update Demo</div></footer>
@@ -719,9 +743,6 @@ table {
 
 
   <script type = "text/javascript">
-  var userInputAsNumber = 0;
-  var maxHeight = 300;
-
   var Pdata = [];
   var PmaxData = 2000;
   var Pthreshold = 0;
@@ -735,15 +756,21 @@ table {
   var Density = 1000; // Density in kg/m^3
   var Gravity = 9.81;
 	
+  var userInputAsNumber = 0;
+  var waterLevel = WmaxData / 2;
 
 	//debugging 
 	
 	/*
-	var Pdata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90];
-    var Wdata = [90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 	
-	PupdatePressureReadings(1000);
-	WupdatePressureReadings(1000);
+	var Pdata = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100];
+    var Wdata = [100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+	
+	//PupdatePressureReadings(1000);
+	//WupdatePressureReadings(1000);
+	
+	WupdateBarHeights();
+	PupdateBarHeights();
 	
 	*/
 	
@@ -773,14 +800,13 @@ table {
 				threshold = inputNumber;
 				//Pressure
                 Pthreshold = threshold;
-                PuserInputAsNumber = (inputNumber/PmaxData) * maxHeight;
                 PthresholdPercentage = (inputNumber/PmaxData) * 100;
                 PthresholdPercentage = Math.floor(PthresholdPercentage);
                 userInputAsNumber = Math.floor(userInputAsNumber);
 				
 				//Height
 				Wthreshold = 100 * (threshold - Base) / (Density * Gravity);
-				WthresholdPercentage = Wthreshold + 15;
+				WthresholdPercentage = Wthreshold + waterLevel;
 				WthresholdPercentage = (WthresholdPercentage / WmaxData) * 100;
 				WthresholdPercentage = Math.floor(WthresholdPercentage);
 				
@@ -793,6 +819,8 @@ table {
 			document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
 			document.getElementById("WlineElement").style.setProperty("--y-value", WthresholdPercentage + "%");
             document.getElementById("WlineElement").innerHTML = Wthreshold;
+			
+			UpdateThreshold(Pthreshold);
         }
 		
   function WdisplayInput() {
@@ -814,7 +842,7 @@ table {
 				
 				//height
 				Wthreshold = threshold;
-				WthresholdPercentage = Wthreshold + 15;
+				WthresholdPercentage = Wthreshold + waterLevel;
 				WthresholdPercentage = (WthresholdPercentage / WmaxData) * 100;
 				WthresholdPercentage = Math.floor(WthresholdPercentage);
 			}
@@ -826,13 +854,21 @@ table {
 			document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
 			document.getElementById("WlineElement").style.setProperty("--y-value", WthresholdPercentage + "%");
             document.getElementById("WlineElement").innerHTML = Wthreshold;
+			
+			UpdateThreshold(Pthreshold);
    }
+
+  function UpdateThreshold(value) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("PUT", "UPDATE_THRESHOLD?VALUE="+value, true);
+      xhttp.send();
+    }
 
   function PupdateBarHeights() {
 // Select each bar and set its height according to data values
     var bars = document.querySelectorAll('.bar');
     bars.forEach((bar, index) => {
-      bar.style.height = `${Pdata[index]}px`;
+      bar.style.height = `${Pdata[index]}%`;
     });
 }
   
@@ -840,7 +876,7 @@ table {
 // Select each bar and set its height according to data values
     var bars = document.querySelectorAll('.barw');
     bars.forEach((bar, index) => {
-      bar.style.height = `${Wdata[index]}px`;
+      bar.style.height = `${Wdata[index]}%`;
     });
 }
   
@@ -862,7 +898,7 @@ table {
 // Function to update pressure readings and shift previous values
 function PupdatePressureReadings(newReading) {
 
-    result = (newReading / PmaxData) * maxHeight;
+    result = (newReading / PmaxData) * 100;
     result = Math.floor(result);
 
     // Add the new reading to the beginning of the array
@@ -880,15 +916,12 @@ function WupdatePressureReadings(newReading) {
 
     resultA = 100 * (result - Base) / (Density * Gravity);
 	resultA = parseFloat(resultA.toFixed(2));
-	resultB = resultA + 15;
+	resultB = resultA + waterLevel;
 	
-	result1 = (resultB / WmaxData) * maxHeight;
+	result1 = (resultB / WmaxData) * 100;
 	result1 = Math.floor(result1);
 	
-	result2 = (resultB / WmaxData) * 100;
-	result2 = Math.floor(result2);
-	
-	document.getElementById("WClineElement").style.setProperty("--y-value", result2 + "%");
+	document.getElementById("WClineElement").style.setProperty("--y-value", result1 + "%");
     document.getElementById("WClineElement").innerHTML = resultA;
 	document.getElementById("w0").innerHTML = resultA;
 

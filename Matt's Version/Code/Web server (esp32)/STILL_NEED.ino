@@ -271,6 +271,7 @@ void setup() {
   // just parts of the web page
   server.on("/xml", SendXML);
 
+  server.on("/UPDATE_THRESHOLD", UpdateThreshold);
   // finally begin the server
   server.begin();
 }
@@ -314,6 +315,27 @@ void SendWebsite() {
   // a longer timeout that 200 ms
   server.send(200, "text/html", PAGE_MAIN);
 
+}
+
+void UpdateThreshold() {
+  // Get the value of the "VALUE" parameter from the request
+  String Tdata = server.arg("VALUE");
+
+  // Convert the String to an integer
+  int ThresholdValue = Tdata.toInt();
+
+  // Convert the integer to a String explicitly
+  String Threshold = "C01 - (hPa): " + String(ThresholdValue);
+
+  // Debug print the Threshold value
+  Serial.print("UpdateThreshold: ");
+  Serial.println(Threshold);
+
+  // Broadcast the Threshold value (assuming you have the broadcast function set up properly)
+  broadcast(Threshold);
+
+  // Send an empty response to the client
+  server.send(200, "text/plain", "");
 }
 
 // code to send the main web page
