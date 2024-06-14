@@ -3,6 +3,7 @@
 
 #define RXp2 16
 #define TXp2 17
+int LED = 19;
 
 const int bufferSize = 64; // Adjust the buffer size as needed
 char buffer[bufferSize];
@@ -117,6 +118,8 @@ void setup() {
     delay(3000);
     ESP.restart();
   }
+
+  pinMode(LED, OUTPUT);
 }
 
 void loop() {
@@ -127,6 +130,7 @@ void loop() {
     } else {
       // Buffer overflow, handle error or discard data
       Serial.print("Recieved Data is Too Big");
+      digitalWrite(LED, HIGH);
     }
   }
   
@@ -145,6 +149,6 @@ void processBuffer(const char *buffer, int length) {
   // Your data processing code here
   // Example: Print the received data
   //Serial.write(buffer, length);
-  Serial.print(buffer);
+  //Serial.print(buffer);
   broadcast(buffer);
 }
