@@ -127,6 +127,7 @@ void loop() {
     char receivedChar = Serial2.read(); // Read the incoming byte
     if (bufferIndex < bufferSize - 1) { // Check if buffer is not full
       buffer[bufferIndex++] = receivedChar; // Store the byte in the buffer
+      digitalWrite(LED, LOW);
     } else {
       // Buffer overflow, handle error or discard data
       Serial.print("Recieved Data is Too Big");
@@ -149,6 +150,6 @@ void processBuffer(const char *buffer, int length) {
   // Your data processing code here
   // Example: Print the received data
   //Serial.write(buffer, length);
-  //Serial.print(buffer);
+  Serial.print(buffer);
   broadcast(buffer);
 }
