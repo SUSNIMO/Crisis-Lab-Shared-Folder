@@ -674,10 +674,10 @@ table {
     <div class="barw bar100" style="height: 0;"></div>
     <div class="barA barAB" style="height: 0;"></div>
 
-    <div class="line" style="--y-value: 100%;">15</div>
-    <div class="line" style="--y-value: 75%;">7.5</div>
-    <div class="line" style="--y-value: 50%;">0</div>
-    <div class="line" style="--y-value: 25%;">-7.5</div>
+    <div id = "water1" class="line" style="--y-value: 100%;"></div>
+    <div id = "water2" class="line" style="--y-value: 75%;"></div>
+    <div id = "water3" class="line" style="--y-value: 50%;"></div>
+    <div id = "water4" class="line" style="--y-value: 25%;"></div>
     
     <div class="threshold" id="WlineElement"></div>
 	<div class="current" id="WClineElement"></div>
@@ -710,6 +710,12 @@ table {
       <td colspan="1"><label for="BinputField">Base Pressure:</label></td>
       <td colspan="1"><input type="text" id="BinputField"></td>
       <td colspan="1"><button onclick="BdisplayInput()">Submit</button></td>
+  </tr>
+  
+  <tr>
+      <td colspan="1"><label for="DinputField">Height max data:</label></td>
+      <td colspan="1"><input type="text" id="DinputField"></td>
+      <td colspan="1"><button onclick="DdisplayInput()">Submit</button></td>
   </tr>
 	
     <tr>
@@ -773,6 +779,35 @@ table {
 	PupdateBarHeights();
 	
 	*/
+	
+  function DdisplayInput() {
+    var userInput = document.getElementById("DinputField").value;
+    var inputNumber = parseFloat(userInput);
+    
+    // Check if the parsed input is a valid number
+    if (!isNaN(inputNumber)) {
+        WmaxData = inputNumber; // Update global WmaxData
+        waterLevel = WmaxData / 2; // Update global waterLevel
+    }
+
+    var w1 = waterLevel.toFixed(2);
+    var W2 = waterLevel * (2 / 4); 
+    var w2 = W2.toFixed(2);
+    var W3 = 0; 
+    var w3 = W3.toFixed(2);
+    var W4 = waterLevel * -1 * (2 / 4); 
+    var w4 = W4.toFixed(2);
+
+    document.getElementById("water1").innerHTML = w1;
+    document.getElementById("water2").innerHTML = w2;
+    document.getElementById("water3").innerHTML = w3;
+    document.getElementById("water4").innerHTML = w4;
+    
+    // Log values for debugging
+    console.log("DdisplayInput values:", { w1, w2, w3, w4, WmaxData, waterLevel });
+}
+
+	
 	
   function BdisplayInput() {
 		var userInput = document.getElementById("BinputField").value;
@@ -843,7 +878,7 @@ table {
 				//height
 				Wthreshold = threshold;
 				WthresholdPercentage = Wthreshold + waterLevel;
-				WthresholdPercentage = (WthresholdPercentage / WmaxData) * 100;
+				WthresholdPercentage = 100 * (WthresholdPercentage / WmaxData);
 				WthresholdPercentage = Math.floor(WthresholdPercentage);
 			}
 			// Update the display div with the updated total
@@ -905,7 +940,7 @@ function PupdatePressureReadings(newReading) {
     Pdata.unshift(result);
     
     // Remove the oldest reading if the array length exceeds
-    if (Pdata.length > 90) {
+    if (Pdata.length > 100) {
         Pdata.pop();
     }
 }
@@ -929,7 +964,7 @@ function WupdatePressureReadings(newReading) {
     Wdata.unshift(result1);
     
     // Remove the oldest reading if the array length exceeds
-    if (Wdata.length > 90) {
+    if (Wdata.length > 100) {
         Wdata.pop();
     }
 }
