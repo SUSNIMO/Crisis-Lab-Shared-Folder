@@ -840,7 +840,8 @@ table {
                 userInputAsNumber = Math.floor(userInputAsNumber);
 				
 				//Height
-				Wthreshold = 100 * (threshold - Base) / (Density * Gravity);
+				Wthreshold = ((threshold - Base) * (100)) / (Density * Gravity);
+				Wthreshold = Wthreshold * 100;
 				WthresholdPercentage = Wthreshold + waterLevel;
 				WthresholdPercentage = (WthresholdPercentage / WmaxData) * 100;
 				WthresholdPercentage = Math.floor(WthresholdPercentage);
@@ -871,7 +872,8 @@ table {
 				threshold = inputNumber;
 				
 				//pressure
-				Pthreshold = ((threshold / 100) * (Density * Gravity)) + Base;
+				Pthreshold = (threshold * Density * Gravity) - (Base * 100);
+				Pthreshold = Pthreshold * 100;
 				PthresholdPercentage = (Pthreshold / PmaxData) * 100;
 				PthresholdPercentage = Math.floor(PthresholdPercentage);
 				
@@ -949,7 +951,8 @@ function WupdatePressureReadings(newReading) {
 
 	result = newReading;
 
-    resultA = 100 * (result - Base) / (Density * Gravity);
+    resultA = ((result - Base) * (100)) / (Density * Gravity);
+	resultA = resultA * 100;
 	resultA = parseFloat(resultA.toFixed(2));
 	resultB = resultA + waterLevel;
 	
