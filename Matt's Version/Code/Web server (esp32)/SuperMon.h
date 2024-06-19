@@ -216,21 +216,21 @@ table {
     }
 
 	.Charts {
-	  width: 100%;
-      height: 500px;
+	  width: 1780px;
+      height: 450px;
       display: flex;
     }
 
     .Wchart {
         border: 1px solid #ccc;
-        width: 450px;
+        width: 30%;
         height: 100%;
         position: relative;
     }
 	
 	.Pchart {
         border: 1px solid #ccc;
-        width: 450px;
+        width: 30%;
         height: 100%;
         position: relative;
     }
@@ -683,42 +683,57 @@ table {
 	<div class="current" id="WClineElement"></div>
 </div>
 
-<div>
+<div style="width: 20%">
 
-  <table style="width: 0%; height: 100%">
+  <table style="width: 100%; height: 100%">
     <colgroup>
-      <col span="1" style="background-color:rgb(230,230,230); width: 1%; color:#000000 ; height: 16%;">
-      <col span="1" style="background-color:rgb(200,200,200); width: 1%; color:#000000 ; height: 16%;">
-      <col span="1" style="background-color:rgb(180,180,180); width: 1%; color:#000000 ; height: 16%;">
+      <col span="1" style="background-color:rgb(230,230,230); width: 20%; color:#000000 ; height: 16%;">
+      <col span="1" style="background-color:rgb(200,200,200); width: 60%; color:#000000 ; height: 16%;">
+      <col span="1" style="background-color:rgb(180,180,180); width: 20%; color:#000000 ; height: 16%;">
     </colgroup>
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
       <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
     <tr>
       <td colspan="1"><label for="PinputField">Threshold Pressure:</label></td>
-      <td colspan="1"><input type="text" id="PinputField"></td>
+      <td colspan="1"><input type="text" id="PinputField" style="width: 75px"></td>
       <td colspan="1"><button onclick="PdisplayInput()">Submit</button></td>
     </tr>
     
 	<tr>
-      <td colspan="1"><label for="WinputField">Threshold Water Height:</label></td>
-      <td colspan="1"><input type="text" id="WinputField"></td>
+      <td colspan="1"><label for="WinputField">Threshold Water:</label></td>
+      <td colspan="1"><input type="text" id="WinputField" style="width: 75px"></td>
       <td colspan="1"><button onclick="WdisplayInput()">Submit</button></td>
     </tr>
 	
 	<tr>
       <td colspan="1"><label for="BinputField">Base Pressure:</label></td>
-      <td colspan="1"><input type="text" id="BinputField"></td>
+      <td colspan="1"><input type="text" id="BinputField" style="width: 75px"></td>
       <td colspan="1"><button onclick="BdisplayInput()">Submit</button></td>
   </tr>
   
   <tr>
       <td colspan="1"><label for="DinputField">Height max data:</label></td>
-      <td colspan="1"><input type="text" id="DinputField"></td>
+      <td colspan="1"><input type="text" id="DinputField" style="width: 75px"></td>
       <td colspan="1"><button onclick="DdisplayInput()">Submit</button></td>
   </tr>
-	
-    <tr>
+  
+  </table>
+</div>
+
+<div style="width: 20%">
+
+  <table style="width: 100%; height: 100%">
+    <colgroup>
+      <col span="1" style="background-color:rgb(230,230,230); width: 20%%; color:#000000 ; height: 16%;">
+      <col span="1" style="background-color:rgb(200,200,200); width: 60%; color:#000000 ; height: 16%;">
+      <col span="1" style="background-color:rgb(180,180,180); width: 20%; color:#000000 ; height: 16%;">
+    </colgroup>
+      <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+      <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+      <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
+	 
+	 <tr>
       <td>Threshold</td>
       <td><div id="PdisplayDiv"></div></td>
       <td>(hPa)</td>
@@ -735,10 +750,8 @@ table {
       <td><div id="BdisplayDiv"></div></td>
       <td>(hPa)</td>
     </tr> 
-  
-  </table>
+	</table>
 </div>
-
 
 </div>
   </main>
@@ -872,8 +885,8 @@ table {
 				threshold = inputNumber;
 				
 				//pressure
-				Pthreshold = (threshold * Density * Gravity) - (Base * 100);
-				Pthreshold = Pthreshold * 100;
+				Pthreshold = (((threshold / 100) * Density * Gravity) + (Base * 100));
+				Pthreshold = Pthreshold  / 100;
 				PthresholdPercentage = (Pthreshold / PmaxData) * 100;
 				PthresholdPercentage = Math.floor(PthresholdPercentage);
 				
