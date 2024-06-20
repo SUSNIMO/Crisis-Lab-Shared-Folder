@@ -28,21 +28,17 @@ void loop() {
     tone(buzzerPin2, 1000);
     tone(buzzerPin3, 1500);
     delay(250);
-    tone(buzzerPin1, 1000);
-    tone(buzzerPin2, 1000);
-    notone(buzzerPin3);
+    noTone(buzzerPin3);
     delay(250);
-    notone(buzzerPin1);
-    notone(buzzerPin2);
-    notone(buzzerPin3);
+    noTone(buzzerPin1);
+    noTone(buzzerPin2);
+    noTone(buzzerPin3);
     delay(250);
-    notone(buzzerPin1);
-    notone(buzzerPin2);
     tone(buzzerPin3, 1500);
     delay(250);
-    notone(buzzerPin1);
-    notone(buzzerPin2);
-    notone(buzzerPin3);
+    noTone(buzzerPin1);
+    noTone(buzzerPin2);
+    noTone(buzzerPin3);
     delay(250);
   }
 
