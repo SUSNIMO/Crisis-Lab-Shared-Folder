@@ -1,7 +1,39 @@
 // Pins connected to the buzzers
 const int buzzerPin1 = 2;
-const int buzzerPin2 = 3; // Second buzzer connected to pin 10
-const int buzzerPin3 = 4;  // Third buzzer connected to pin 9
+const int buzzerPin2 = 3;
+const int buzzerPin3 = 4;  
+const int buzzerPin4 = 5;
+
+void AlarmGo(){
+  for (int i = 0; i < 20; i++) { // Repeat the alert sound 10 times
+
+    // First half of the cycle
+    tone(buzzerPin1, 500); // Send a 1kHz sound wave to the first buzzer
+    tone(buzzerPin2, 750); // Send a 1kHz sound wave to the second buzzer
+    tone(buzzerPin3, 1500); // Send a 1.5kHz sound wave to the third buzzer
+    noTone(buzzerPin4);
+    delay(250);             // Delay for 125 milliseconds
+
+    noTone(buzzerPin3);     // Stop the third buzzer (halfway point)
+    tone(buzzerPin4, 2000);
+    delay(250);             // Delay for another 125 milliseconds
+    
+    noTone(buzzerPin1);     // Stop the first buzzer
+    noTone(buzzerPin2);     // Stop the second buzzer
+    tone(buzzerPin3, 1500);
+    noTone(buzzerPin4);
+    delay(250);             // Delay for 250 milliseconds
+
+    noTone(buzzerPin3); // Send a 1.5kHz sound wave to the third buzzer
+    tone(buzzerPin4, 2000);
+    delay(250);             // Delay for 125 milliseconds
+
+    noTone(buzzerPin1);
+    noTone(buzzerPin2);
+    noTone(buzzerPin3);
+    noTone(buzzerPin4);
+  }
+}
 
 void setup() {
   // Initialize the buzzer pins as outputs
@@ -11,36 +43,6 @@ void setup() {
 }
 
 void loop() {
-  // Generate the tsunami alert sound
-  for (int i = 0; i < 10; i++) { // Repeat the alert sound 10 times
-    /*
-    tone(buzzerPin1, 1000); // Send a 1kHz sound wave to the first buzzer
-    tone(buzzerPin2, 1000); // Send a 1kHz sound wave to the second buzzer
-    tone(buzzerPin3, 1000); // Send a 1kHz sound wave to the third buzzer
-    delay(500); // Wait for 500 milliseconds
-    noTone(buzzerPin1); // Stop the sound on the first buzzer
-    noTone(buzzerPin2); // Stop the sound on the second buzzer
-    noTone(buzzerPin3); // Stop the sound on the third buzzer
-    delay(500); // Wait for 500 milliseconds
-    */
-
-    tone(buzzerPin1, 1000);
-    tone(buzzerPin2, 1000);
-    tone(buzzerPin3, 1500);
-    delay(250);
-    noTone(buzzerPin3);
-    delay(250);
-    noTone(buzzerPin1);
-    noTone(buzzerPin2);
-    noTone(buzzerPin3);
-    delay(250);
-    tone(buzzerPin3, 1500);
-    delay(250);
-    noTone(buzzerPin1);
-    noTone(buzzerPin2);
-    noTone(buzzerPin3);
-    delay(250);
-  }
-
-  delay(5000); // Wait for 5 seconds before repeating the alert sound
+  AlarmGo();
+  delay(5000);
 }
