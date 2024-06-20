@@ -8,7 +8,7 @@ int dummy;
 std::string pressure_data = "";
 std::string threshold_data = "";
 float Pressure = 0.00;
-float Threshold = 100.00;
+float Threshold = 1500.00;
 int LED = 2;
 
 void alarm_trig(){
