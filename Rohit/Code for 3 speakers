@@ -13,6 +13,7 @@ void setup() {
 void loop() {
   // Generate the tsunami alert sound
   for (int i = 0; i < 10; i++) { // Repeat the alert sound 10 times
+    /*
     tone(buzzerPin1, 1000); // Send a 1kHz sound wave to the first buzzer
     tone(buzzerPin2, 1000); // Send a 1kHz sound wave to the second buzzer
     tone(buzzerPin3, 1000); // Send a 1kHz sound wave to the third buzzer
@@ -21,6 +22,27 @@ void loop() {
     noTone(buzzerPin2); // Stop the sound on the second buzzer
     noTone(buzzerPin3); // Stop the sound on the third buzzer
     delay(500); // Wait for 500 milliseconds
+    */
+
+    digitalWrite(buzzerPin1, HIGH);
+    digitalWrite(buzzerPin2, HIGH);
+    digitalWrite(buzzerPin3, HIGH);
+    delay(250);
+    digitalWrite(buzzerPin1, HIGH);
+    digitalWrite(buzzerPin2, HIGH);
+    digitalWrite(buzzerPin3, LOW);
+    delay(250);
+    digitalWrite(buzzerPin1, LOW);
+    digitalWrite(buzzerPin2, LOW);
+    digitalWrite(buzzerPin3, LOW);
+    delay(250);
+    digitalWrite(buzzerPin1, LOW);
+    digitalWrite(buzzerPin2, LOW);
+    digitalWrite(buzzerPin3, HIGH);
+    delay(250);
+    digitalWrite(buzzerPin1, LOW);
+    digitalWrite(buzzerPin2, LOW);
+    digitalWrite(buzzerPin3, LOW);
   }
 
   delay(5000); // Wait for 5 seconds before repeating the alert sound
