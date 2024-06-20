@@ -1,6 +1,16 @@
+#include <Adafruit_ST7735.h>
+#include <Adafruit_ST7789.h>
+#include <Adafruit_ST77xx.h>
+
+#include <Adafruit_GFX.h>
+#include <Adafruit_GrayOLED.h>
+#include <Adafruit_SPITFT.h>
+#include <Adafruit_SPITFT_Macros.h>
+#include <gfxfont.h>
 
 
-ST7735 TFT SPI display pins for Arduino Uno/Nano:
+
+/*ST7735 TFT SPI display pins for Arduino Uno/Nano:
  * LED =   3.3V
  * SCK =   13
  * SDA =   11
@@ -59,12 +69,12 @@ Common colors:
  * YELLOW   0xFFE0
  * WHITE    0xFFFF
 
-
+*/
 #include <Adafruit_GFX.h>  // Include core graphics library
 #include <Adafruit_ST7735.h>  // Include Adafruit_ST7735 library to drive the display
 
 
-// Declare pins for the display:
+//Declare pins for the display:
 #define TFT_CS     10
 #define TFT_RST    9  // You can also connect this to the Arduino reset in which case, set this #define pin to -1!
 #define TFT_DC     8
@@ -110,36 +120,60 @@ void setup()  // Start of setup
 
 
 
-  // We are going to print on the display everything that is static on the setup, to leave the loop free for dynamic elements:
+  //This is the code for when there is a tsunami
 
-  // Write to the display the text "Tsunami":
+//Write to the display the text "Tsunami":
   tft.setCursor(0, 0);  // Set position (x,y)
   tft.setTextColor(ST7735_WHITE);  // Set color of text. First is the color of text and after is color of background
   tft.setTextSize(3);  // Set text size. Goes from 0 (the smallest) to 20 (very big)
   tft.println("Tsunami");  // Print a text or value
 
-  
-  // Write to the display the text "Danger":
+
+//Write to the display the text "Danger":
   tft.setCursor(0, 35);  // Set position (x,y)
   tft.setTextColor(ST7735_RED);
   tft.setTextSize(3); // Set color of text. We are using custom font so there is no background color supported
   tft.println("DANGER!");  // Print a text or value
 
 
-  // Stop using a custom font:
+//Stop using a custom font:
   tft.setFont();  // Reset to standard font, to stop using any custom font previously set
 
 
-  // Draw filled triangle:
-  //tft.fillTriangle(10,120,    60,60,    110,120, ST7735_RED);  // Draw filled triangle (x0,y0,x1,y1,x2,y2,color)
+//Draw filled triangle:
+  tft.fillTriangle(10,120,    60,60,    110,120, ST7735_RED);  // Draw filled triangle (x0,y0,x1,y1,x2,y2,color)
 
 
-  // Write to the display the text "Get to higher ground":
+//Write to the display the text "Get to higher ground":
   tft.setCursor(0, 150);  // Set position (x,y)
   tft.setTextColor(ST7735_RED);
   tft.setTextSize(1); // Set color of text. We are using custom font so there is no background color supported
   tft.println("Get to higher ground");  // Print a text or value
+
+
+
+
+// Run seperatly or the display will malfunction
+  // This is the code for when there is no tsunami
   
+  //Write to the display the text "Safe":
+  tft.setCursor(0, 0);  // Set position (x,y)
+  tft.setTextColor(ST7735_GREEN);  // Set color of text. First is the color of text and after is color of background
+  tft.setTextSize(3);  // Set text size. Goes from 0 (the smallest) to 20 (very big)
+  tft.println("Safe");  // Print a text or value
+  
+
+
+//Write to the display the text "No tsunami incoming":
+  tft.setTextWrap(true);// so it goes to the next line
+  tft.setCursor(0, 35);  // Set position (x,y)
+  tft.setTextColor(ST7735_BLUE);
+  tft.setTextSize(1.5); // Set color of text. We are using custom font so there is no background color supported
+  tft.println("No tsunami incoming");  // Print a text or value
+
+
+
+
 }  // End of setup
 
 
@@ -150,7 +184,5 @@ void setup()  // Start of setup
 
 void loop()  // Start of loop
 {
-  wait(0.2)
-  // Draw filled triangle:
-  tft.fillTriangle(10,120,    60,60,    110,120, ST7735_RED);  // Draw filled triangle (x0,y0,x1,y1,x2,y2,color)
+ 
 }  // End of loop
