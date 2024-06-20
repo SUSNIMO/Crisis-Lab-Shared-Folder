@@ -1,0 +1,31 @@
+// Pins connected to the buzzers
+const int buzzerPin1 = 11;
+const int buzzerPin2 = 10; // Second buzzer connected to pin 10
+const int buzzerPin3 = 9;  // Third buzzer connected to pin 9
+const int buzzerPin4 = 8;  // Fourth buzzer connected to pin 8
+
+void setup() {
+  // Initialize the buzzer pins as outputs
+  pinMode(buzzerPin1, OUTPUT);
+  pinMode(buzzerPin2, OUTPUT);
+  pinMode(buzzerPin3, OUTPUT);
+  pinMode(buzzerPin4, OUTPUT);
+}
+
+void loop() {
+  // Generate the tsunami alert sound
+  for (int i = 0; i < 10; i++) { // Repeat the alert sound 10 times
+    tone(buzzerPin1, 1000); // Send a 1kHz sound wave to the first buzzer
+    tone(buzzerPin2, 1000); // Send a 1kHz sound wave to the second buzzer
+    tone(buzzerPin3, 1000); // Send a 1kHz sound wave to the third buzzer
+    tone(buzzerPin4, 1000); // Send a 1kHz sound wave to the fourth buzzer
+    delay(500); // Wait for 500 milliseconds
+    noTone(buzzerPin1); // Stop the sound on the first buzzer
+    noTone(buzzerPin2); // Stop the sound on the second buzzer
+    noTone(buzzerPin3); // Stop the sound on the third buzzer
+    noTone(buzzerPin4); // Stop the sound on the fourth buzzer
+    delay(500); // Wait for 500 milliseconds
+  }
+
+  delay(5000); // Wait for 5 seconds before repeating the alert sound
+}
