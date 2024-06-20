@@ -1,5 +1,4 @@
-/*
-This is an example on how to use the 1.8" TFT 128x160 SPI ST7735 display using the Adafruit library.
+
 
 ST7735 TFT SPI display pins for Arduino Uno/Nano:
  * LED =   3.3V
@@ -60,24 +59,6 @@ Common colors:
  * YELLOW   0xFFE0
  * WHITE    0xFFFF
 
-A way to select a color is to write: "ST7735_BLACK", or "ST7735_BLUE", etc.
-Or just write the code for the color. Either way, it works.
-
-
-List of custom fonts: https://learn.adafruit.com/adafruit-gfx-graphics-library/using-fonts
-
-Note about custom font:
- * Text background color is not supported for custom fonts. For these reason you would need to draw a filled 
-   rectangle before drawing the text. But this would cause the text to flicker, so I don't recommend using custom fonts
-   for components that refresh continuously.
- * Using custom fonts slows down the arduino loop, so the refresh rate is lesser than using the standard font.
-
-
-Sketch made by: InterlinkKnight
-Last modification: 01/11/2018
-*/
-
-
 
 #include <Adafruit_GFX.h>  // Include core graphics library
 #include <Adafruit_ST7735.h>  // Include Adafruit_ST7735 library to drive the display
@@ -101,7 +82,7 @@ Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
 
 
-//int Variable1;  // Create a variable to have something dynamic to show on the display
+int Variable1;  // Create a variable to have something dynamic to show on the display
 
 
 
@@ -131,64 +112,32 @@ void setup()  // Start of setup
 
   // We are going to print on the display everything that is static on the setup, to leave the loop free for dynamic elements:
 
-  // Write to the display the text "Tsunami Incoming":
+  // Write to the display the text "Tsunami":
   tft.setCursor(0, 0);  // Set position (x,y)
   tft.setTextColor(ST7735_WHITE);  // Set color of text. First is the color of text and after is color of background
   tft.setTextSize(3);  // Set text size. Goes from 0 (the smallest) to 20 (very big)
-  tft.println("Tsunami Incoming");  // Print a text or value
+  tft.println("Tsunami");  // Print a text or value
 
   
-
-  // Start using a custom font:
-  tft.setFont(&FreeSerif18pt7b);  // Set a custom font
-  tft.setTextSize(0);  // Set text size. We are using custom font so you should always set text size as 0
-
   // Write to the display the text "Danger":
-  tft.setCursor(0, 50);  // Set position (x,y)
-  tft.setTextColor(ST7735_RED);  // Set color of text. We are using custom font so there is no background color supported
+  tft.setCursor(0, 35);  // Set position (x,y)
+  tft.setTextColor(ST7735_RED);
+  tft.setTextSize(3); // Set color of text. We are using custom font so there is no background color supported
   tft.println("DANGER!");  // Print a text or value
+
 
   // Stop using a custom font:
   tft.setFont();  // Reset to standard font, to stop using any custom font previously set
 
 
-
-
-  // Draw rectangle:
-  //tft.drawRect(0, 60, 60, 30, ST7735_CYAN);  // Draw rectangle (x,y,width,height,color)
-                                             // It draws from the location to down-right
-                                             
-  // Draw rounded rectangle:
- // tft.drawRoundRect(68, 60, 60, 30, 10, ST7735_CYAN);  // Draw rounded rectangle (x,y,width,height,radius,color)
-                                                       // It draws from the location to down-right
-
-
-  // Draw triangle:
-  //tft.drawTriangle(60,120,    70,94,    80,120, ST7735_RED);  // Draw triangle (x0,y0,x1,y1,x2,y2,color)
-
-
   // Draw filled triangle:
-  tft.fillTriangle(100,120,    110,94,    120,120, ST7735_RED);  // Draw filled triangle (x0,y0,x1,y1,x2,y2,color)
+  //tft.fillTriangle(10,120,    60,60,    110,120, ST7735_RED);  // Draw filled triangle (x0,y0,x1,y1,x2,y2,color)
 
 
-  // Draw line:
- // tft.drawLine(0, 125, 127, 125, ST7735_CYAN);  // Draw line (x0,y0,x1,y1,color)
-  
-
-  //  Draw circle:
-  //tft.drawCircle(15, 144, 14, ST7735_GREEN);  //  Draw circle (x,y,radius,color)
-
-
-  // Draw a filled circle:
-  //tft.fillCircle(60, 144, 14, ST7735_BLUE);  // Draw circle (x,y,radius,color)
-
-
-  // Draw rounded rectangle and fill:
- // tft.fillRoundRect(88, 130, 40, 27, 5, 0xF81B);  // Draw rounded filled rectangle (x,y,width,height,color)
-  
   // Write to the display the text "Get to higher ground":
   tft.setCursor(0, 150);  // Set position (x,y)
-  tft.setTextColor(ST7735_RED);  // Set color of text. We are using custom font so there is no background color supported
+  tft.setTextColor(ST7735_RED);
+  tft.setTextSize(1); // Set color of text. We are using custom font so there is no background color supported
   tft.println("Get to higher ground");  // Print a text or value
   
 }  // End of setup
@@ -201,5 +150,7 @@ void setup()  // Start of setup
 
 void loop()  // Start of loop
 {
-
+  wait(0.2)
+  // Draw filled triangle:
+  tft.fillTriangle(10,120,    60,60,    110,120, ST7735_RED);  // Draw filled triangle (x0,y0,x1,y1,x2,y2,color)
 }  // End of loop
