@@ -1,7 +1,7 @@
 // Pins connected to the buzzers
-const int buzzerPin1 = 11;
-const int buzzerPin2 = 10; // Second buzzer connected to pin 10
-const int buzzerPin3 = 9;  // Third buzzer connected to pin 9
+const int buzzerPin1 = 2;
+const int buzzerPin2 = 3; // Second buzzer connected to pin 10
+const int buzzerPin3 = 4;  // Third buzzer connected to pin 9
 
 void setup() {
   // Initialize the buzzer pins as outputs
@@ -24,25 +24,26 @@ void loop() {
     delay(500); // Wait for 500 milliseconds
     */
 
-    digitalWrite(buzzerPin1, HIGH);
-    digitalWrite(buzzerPin2, HIGH);
-    digitalWrite(buzzerPin3, HIGH);
+    tone(buzzerPin1, 1000);
+    tone(buzzerPin2, 1000);
+    tone(buzzerPin3, 1500);
     delay(250);
-    digitalWrite(buzzerPin1, HIGH);
-    digitalWrite(buzzerPin2, HIGH);
-    digitalWrite(buzzerPin3, LOW);
+    tone(buzzerPin1, 1000);
+    tone(buzzerPin2, 1000);
+    notone(buzzerPin3);
     delay(250);
-    digitalWrite(buzzerPin1, LOW);
-    digitalWrite(buzzerPin2, LOW);
-    digitalWrite(buzzerPin3, LOW);
+    notone(buzzerPin1);
+    notone(buzzerPin2);
+    notone(buzzerPin3);
     delay(250);
-    digitalWrite(buzzerPin1, LOW);
-    digitalWrite(buzzerPin2, LOW);
-    digitalWrite(buzzerPin3, HIGH);
+    notone(buzzerPin1);
+    notone(buzzerPin2);
+    tone(buzzerPin3, 1500);
     delay(250);
-    digitalWrite(buzzerPin1, LOW);
-    digitalWrite(buzzerPin2, LOW);
-    digitalWrite(buzzerPin3, LOW);
+    notone(buzzerPin1);
+    notone(buzzerPin2);
+    notone(buzzerPin3);
+    delay(250);
   }
 
   delay(5000); // Wait for 5 seconds before repeating the alert sound
