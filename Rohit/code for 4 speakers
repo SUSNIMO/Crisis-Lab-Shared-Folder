@@ -1,8 +1,8 @@
 // Pins connected to the buzzers
-const int buzzerPin1 = 11;
-const int buzzerPin2 = 10; // Second buzzer connected to pin 10
-const int buzzerPin3 = 9;  // Third buzzer connected to pin 9
-const int buzzerPin4 = 8;  // Fourth buzzer connected to pin 8
+const int buzzerPin1 = 2;
+const int buzzerPin2 = 3; // Second buzzer connected to pin 10
+const int buzzerPin3 = 4;  // Third buzzer connected to pin 9
+const int buzzerPin4 = 4;  // Fourth buzzer connected to pin 8
 
 void setup() {
   // Initialize the buzzer pins as outputs
