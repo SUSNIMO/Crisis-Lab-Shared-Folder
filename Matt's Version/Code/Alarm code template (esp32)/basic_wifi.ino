@@ -150,10 +150,14 @@ void loop() {
     // alarm triggers
     broadcast("A01 - 1");
     Serial.println("Triggered");
-    digitalWrite(LED, HIGH);
+    Serial.println("Triggered");
+    Serial.println("Triggered");
+    Serial.println("Triggered");
+    Serial.println("Triggered");
+    Serial.println("Triggered");
   } else {
     digitalWrite(LED, LOW);
     broadcast("A01 - 0");
-    Serial.println("Not Triggered");
+    //Serial.println("Not Triggered");
   }
 }
