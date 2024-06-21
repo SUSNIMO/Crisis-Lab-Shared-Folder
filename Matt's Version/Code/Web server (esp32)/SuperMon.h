@@ -785,6 +785,8 @@ table {
   var userInputAsNumber = 0;
   var waterLevel = WmaxData / 2;
 
+
+  /*
 	//debugging 
 	
 	
@@ -798,7 +800,7 @@ table {
 	WupdateBarHeights();
 	PupdateBarHeights();
 	
-	
+	*/
 	
   function DdisplayInput() {
     var userInput = document.getElementById("DinputField").value;
