@@ -392,6 +392,47 @@ table {
 			border-top: 1px solid ##FFFF00;
 			font-size: 10px;
 		}
+		
+	/* Style for the popup overlay */
+        #popupOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* Style for the popup content */
+        #popupContent {
+			width: 600px;
+			height: 600px;
+            position: absolute;
+            top: 50%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+			font-size: 50px;
+        }
+
+        /* Style for the close button */
+        #closeButton {
+			width: 25%;
+			height: 10%;
+			font-size: 25px;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
   </style>
 </head>
 
@@ -725,6 +766,19 @@ table {
       <td colspan="1"><button onclick="DdisplayInput()">Submit</button></td>
   </tr>
   
+  <tr>
+	<td>Alarm</td>
+	<td>Test runner</td>
+	<td><button onclick="showPopup()">Alarm</button></td>
+  </tr>
+  
+  <div id="popupOverlay">
+        <div id="popupContent">
+            <p>Alarm is triggered</p>
+            <button id="closeButton" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+  
   </table>
 </div>
 
@@ -771,7 +825,7 @@ table {
   <script type = "text/javascript">
   var Pdata = [];
   var PmaxData = 2000;
-  var Pthreshold = 0;
+  var Pthreshold = 2000;
   var PthresholdPercentage = 0; // Initialize
 
   var Wdata = [];
@@ -786,7 +840,7 @@ table {
   var waterLevel = WmaxData / 2;
 
 
-  /*
+/*
 	//debugging 
 	
 	
@@ -801,6 +855,14 @@ table {
 	PupdateBarHeights();
 	
 	*/
+	
+  function showPopup() {
+            document.getElementById('popupOverlay').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
 	
   function DdisplayInput() {
     var userInput = document.getElementById("DinputField").value;
@@ -1022,7 +1084,11 @@ function WupdatePressureReadings(newReading) {
       else {
         color = "#0000aa";
       }
-
+	  
+	  if (message > Pthreshold) {
+		showPopup();
+	  }
+	  
       PupdatePressureReadings(message);
 	  WupdatePressureReadings(message);
       PupdateBarHeights();
