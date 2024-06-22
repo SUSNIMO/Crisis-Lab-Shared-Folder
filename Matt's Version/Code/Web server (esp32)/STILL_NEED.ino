@@ -1,18 +1,15 @@
 #include <WiFi.h>
 #include <esp_now.h>
-#include <WebServer.h>  // standard library
+#include <WebServer.h>  
 #include "SuperMon.h"   // .h file that stores your html page code
-
-// here you post web pages to your homes intranet which will make page debugging easier
-// as you just need to refresh the browser as opposed to reconnection to the web server
 
 //#define USE_INTRANET //comment this out if you want it to turn into a AP
 
-// replace this with your homes intranet connect parameters
+// "Login" for esp32 to connect to a wifi
 #define LOCAL_SSID "ZION"
 #define LOCAL_PASS "largeocean922"
 
-// once  you are read to go live these settings are what you client will connect to
+// "Login" ofr devices to connect to the Esp32
 #define AP_SSID "System Command"
 #define AP_PASS "password123"
 
@@ -25,17 +22,14 @@ int dummy;
 std::string pressure_data;
 std::string temp_data;
 
-// the XML array size needs to be bigger that your maximum expected size. 2048 is way too big for this example
 char XML[2048];
-
-// just some buffer holder for char operations
 char buf[32];
 
 // variable for the IP reported when you connect to your homes intranet (during debug mode)
 IPAddress Actual_IP;
 
 // definitions of your desired intranet created by the ESP32
-IPAddress PageIP(192, 168, 1, 1);
+IPAddress PageIP(192, 168, 1, 1); //IP address
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 IPAddress ip;
@@ -43,8 +37,7 @@ IPAddress ip;
 // gotta create a server
 WebServer server(80);
 
-//Hi IG
-
+// Just a function for finding something in a string
 void Find(std::string text, int& ID, std::string search, int start, int length)
 {
   ID = text.find(search.c_str(), start, length);
@@ -55,43 +48,47 @@ void Find(std::string text, int& ID, std::string search, int start, int length)
     }
 }
 
+//Store the data in temp_data var
 //(C): 24.84  (hPa): 0982
 void temp(const char *data)
 {
   temp_data = std::string(data).substr(11, 2);
 }
 
+//Store the data in pressure_data var
+//(C): 24.84  (hPa): 0982
 void pressure(const char *data)
 {
   pressure_data = std::string(data).substr(25, 4);
 }
 
+//Verify data recieved from Broadcast channel
 void verifyData(std::string message){
-  //message example: S01 - (C): 24.84  (hPa): 0982
-  //message example: C01 - (hPa): 0982
+  //message example for sensor message: S01 - (C): 24.84  (hPa): 0982
+  //message example for computer: C01 - (hPa): 0982
+
+  //Search ID (incase we don't get random messages from esp32 outside the system)
   Find(message, Sensor, "S", 0, 1);
   Find(message, Control, "C", 0, 1);
   Find(message, Alarm, "A", 0, 1);
   Find(message, dummy, "01", 1, 2);
   
+  //Sort the message to their respective functions
   if (dummy){
     if (Sensor){
       temp(message.c_str());
       pressure(message.c_str());
     }
-
-    if (Alarm){
-      
-    }
   }
 }
 
-
+//Formatting Mac Address
 void formatMacAddress(const uint8_t *macAddr, char *buffer, int maxLength)
 {
   snprintf(buffer, maxLength, "%02x:%02x:%02x:%02x:%02x:%02x", macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
 }
 
+//Function for when a message is recieved from the broadcast channel
 void receiveCallback(const uint8_t *macAddr, const uint8_t *data, int dataLen)
 {
   // only allow a maximum of 250 characters in the message + a null terminating byte
@@ -107,10 +104,12 @@ void receiveCallback(const uint8_t *macAddr, const uint8_t *data, int dataLen)
   //Serial.printf("Received message from: %s - %s\n", macStr, buffer);
   // what are our instructions
   //Serial.print(buffer);
+
+  //Verify data
   verifyData(buffer);
 }
 
-// callback when data is sent
+// callback when data is sent to check if data has been recieved
 void sentCallback(const uint8_t *macAddr, esp_now_send_status_t status)
 {
   char macStr[18];
@@ -121,6 +120,7 @@ void sentCallback(const uint8_t *macAddr, esp_now_send_status_t status)
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 
+//function to when you send message to the broadcast channel
 void broadcast(const String &message)
 {
   // this will broadcast a message to everyone in range
@@ -172,16 +172,20 @@ void broadcast(const String &message)
 }
 
 void setup() {
-  // put your setup code here, to run once:
+  //Serial initialization
   Serial.begin(115200);
   //Set device in STA mode to begin with
   WiFi.mode(WIFI_STA);
+
+  //print Startup data
   Serial.println("ESPNow Example");
   // Output my MAC address - useful for later
   Serial.print("My MAC Address is: ");
   Serial.println(WiFi.macAddress());
+
   // shut down wifi
   WiFi.disconnect();
+
   // startup ESP Now
   if (esp_now_init() == ESP_OK)
   {
@@ -195,7 +199,7 @@ void setup() {
     delay(3000);
     ESP.restart();
 
-    // if you have this #define USE_INTRANET,  you will connect to your home intranet, again makes debugging easier
+  // if you have this #define USE_INTRANET,  you will connect to your home intranet, again makes debugging easier
 #ifdef USE_INTRANET
   WiFi.begin(LOCAL_SSID, LOCAL_PASS);
   while (WiFi.status() != WL_CONNECTED) {
@@ -223,8 +227,6 @@ void setup() {
 
   }
 
-  //AHHH
-
   // if your web page or XML are large, you may not get a call back from the web page
   // and the ESP will think something has locked up and reboot the ESP
   // not sure I like this feature, actually I kinda hate it
@@ -235,6 +237,7 @@ void setup() {
   //  disableCore1WDT();
 
   // just an update to progress
+
   Serial.println("starting server");
 
   // if you have this #define USE_INTRANET,  you will connect to your home intranet, again makes debugging easier
@@ -281,8 +284,6 @@ void loop() {
   server.handleClient();
 }
 
-//Hi IG
-
 // I think I got this code from the wifi example
 void printWifiStatus() {
 
@@ -317,6 +318,7 @@ void SendWebsite() {
 
 }
 
+//function to broadcast and process the threshold data that was updated by the web
 void UpdateThreshold() {
   // Get the value of the "VALUE" parameter from the request
   String Tdata = server.arg("VALUE");
@@ -339,14 +341,12 @@ void UpdateThreshold() {
 }
 
 // code to send the main web page
-// I avoid string data types at all cost hence all the char mainipulation code
 void SendXML() {
 
   // Serial.println("sending xml");
 
   strcpy(XML, "<?xml version = '1.0'?>\n<Data>\n");
 
-  // send bitsA0
   sprintf(buf, "<Pressure>%s</Pressure>\n", pressure_data.c_str());
   strcat(XML, buf);
 
@@ -354,13 +354,10 @@ void SendXML() {
   strcat(XML, buf);
 
   strcat(XML, "</Data>\n");
-  // wanna see what the XML code looks like?
-  // actually print it to the serial monitor and use some text editor to get the size
-  // then pad and adjust char XML[2048]; above
+  
+  //print the result above
   Serial.println(XML);
 
-  // you may have to play with this value, big pages need more porcessing time, and hence
-  // a longer timeout that 200 ms
   server.send(200, "text/xml", XML);
 
 
