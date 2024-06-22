@@ -41,12 +41,7 @@ table {
       transition: all 200ms ease-in-out;
       background-color: #00AA00;
     }
-    .fanrpmslider {
-      width: 30%;
-      height: 55px;
-      outline: none;
-      height: 25px;
-    }
+    
     .bodytext {
       font-family: "Verdana", "Arial", sans-serif;
       font-size: 24px;
@@ -116,18 +111,7 @@ table {
       text-align: left;
     }
   
-    .btn {
-      background-color: #444444;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
+    
     .foot {
       font-family: "Verdana", "Arial", sans-serif;
       font-size: 20px;
@@ -332,7 +316,6 @@ table {
 			font-size: 10px;
 		}
 		
-	/* Style for the popup overlay */
         #popupOverlay {
             display: none;
             position: fixed;
@@ -344,7 +327,6 @@ table {
             z-index: 1000;
         }
 
-        /* Style for the popup content */
         #popupContent {
 			width: 600px;
 			height: 600px;
@@ -359,7 +341,6 @@ table {
 			font-size: 50px;
         }
 
-        /* Style for the close button */
         #closeButton {
 			width: 25%;
 			height: 10%;
