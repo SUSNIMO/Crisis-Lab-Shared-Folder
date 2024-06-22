@@ -10,12 +10,15 @@ char buffer[bufferSize];
 int bufferIndex = 0;
 String data;
 
-
+//Formatting mac Address
 void formatMacAddress(const uint8_t *macAddr, char *buffer, int maxLength)
 {
   snprintf(buffer, maxLength, "%02x:%02x:%02x:%02x:%02x:%02x", macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
 }
 
+//When a message is recieved... 
+//honestly it has no function on this esp32 but eh
+//I just added it incase we might need to do something that requires recieving data
 void receiveCallback(const uint8_t *macAddr, const uint8_t *data, int dataLen)
 {
   // only allow a maximum of 250 characters in the message + a null terminating byte
@@ -43,6 +46,7 @@ void sentCallback(const uint8_t *macAddr, esp_now_send_status_t status)
   //Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 
+//Broadcast the Sensor data to the broadcast channel
 void broadcast(const String &message)
 {
   // this will broadcast a message to everyone in range
@@ -95,7 +99,9 @@ void broadcast(const String &message)
 
 
 void setup() {
+  //Serial initialization
   Serial.begin(115200);
+  //For listening to the serial port of the arduino uno's sensor
   Serial2.begin(115200, SERIAL_8N1, RXp2, TXp2);
   //Set device in STA mode to begin with
   WiFi.mode(WIFI_STA);
@@ -119,37 +125,46 @@ void setup() {
     ESP.restart();
   }
 
+  //initialize bulb (to detect an error in reading messages)
   pinMode(LED, OUTPUT);
 }
 
 void loop() {
-  while (Serial2.available()) { // Check if there is data available to read
-    char receivedChar = Serial2.read(); // Read the incoming byte
-    if (bufferIndex < bufferSize - 1) { // Check if buffer is not full
+  // Check if there is data available to read
+  while (Serial2.available()) {
+
+    // Read the incoming byte
+    char receivedChar = Serial2.read();
+
+    // Check if buffer is not full
+    if (bufferIndex < bufferSize - 1) { 
       buffer[bufferIndex++] = receivedChar; // Store the byte in the buffer
       digitalWrite(LED, LOW);
-    } else {
+    } 
+    
+    else {
       // Buffer overflow, handle error or discard data
-      Serial.print("Recieved Data is Too Big");
+      Serial.print("Recieved Data is Distorted");
       digitalWrite(LED, HIGH);
     }
   }
   
-  if (bufferIndex > 0) { // Check if there is data in the buffer
+  // Check if there is data in the buffer
+  if (bufferIndex > 0) {
+
     // Process the data in the buffer
     //message example: S01 - (C): 24.84  (hPa): 0982
     data = "S01 - " + String(buffer);
     processBuffer(data.c_str(), bufferIndex);
+
     // Clear the buffer after processing
     bufferIndex = 0;
     memset(buffer, 0, bufferSize); // Clear the buffer
   }
 }
 
+//Process for sending message to Web esp32
 void processBuffer(const char *buffer, int length) {
-  // Your data processing code here
-  // Example: Print the received data
-  //Serial.write(buffer, length);
   Serial.print(buffer);
   broadcast(buffer);
 }
