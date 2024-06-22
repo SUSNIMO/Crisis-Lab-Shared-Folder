@@ -62,27 +62,29 @@ void displayAlarmNormal() {
 
 void AlarmGo(){
   displayAlarmTriggered();
+
+  //This should last for 20s as the loop runs for 1s and it is being forlooped for 20x
   for (int i = 0; i < 20; i++) {
     // First half of the cycle
-    tone(buzzerPin1, 500); // Send a 1kHz sound wave to the first buzzer
-    tone(buzzerPin2, 750); // Send a 1kHz sound wave to the second buzzer
-    tone(buzzerPin3, 1500); // Send a 1.5kHz sound wave to the third buzzer
+    tone(buzzerPin1, 500); 
+    tone(buzzerPin2, 750); 
+    tone(buzzerPin3, 1500); 
     noTone(buzzerPin4);
-    delay(250);             // Delay for 125 milliseconds
+    delay(250);             
 
-    noTone(buzzerPin3);     // Stop the third buzzer (halfway point)
+    noTone(buzzerPin3);    
     tone(buzzerPin4, 2000);
-    delay(250);             // Delay for another 125 milliseconds
+    delay(250);             
     
-    noTone(buzzerPin1);     // Stop the first buzzer
-    noTone(buzzerPin2);     // Stop the second buzzer
+    noTone(buzzerPin1);     
+    noTone(buzzerPin2);    
     tone(buzzerPin3, 1500);
     noTone(buzzerPin4);
-    delay(250);             // Delay for 250 milliseconds
+    delay(250);             
 
-    noTone(buzzerPin3); // Send a 1.5kHz sound wave to the third buzzer
+    noTone(buzzerPin3); 
     tone(buzzerPin4, 2000);
-    delay(250);             // Delay for 125 milliseconds
+    delay(250);       
 
     noTone(buzzerPin1);
     noTone(buzzerPin2);
@@ -111,6 +113,8 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Restart!"); // Print message to Serial Monitor
 }
+
+//Another option for the loop()
 /*
 void loop() {
   if (Serial.available() > 0) {
@@ -129,10 +133,13 @@ void loop() {
 */
 
 //faster version of the loop()
-
 void loop() {
+
+  //when given command from serial port from the esp32 to run alarm it will
   if (Serial.available() > 0) {
     AlarmGo();
+    
+    //restart the entire arduino
     wdt_enable(WDTO_15MS);
   }
 }
