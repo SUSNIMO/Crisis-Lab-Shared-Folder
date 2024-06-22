@@ -736,8 +736,10 @@ table {
 
 </div>
   </main>
-
-    <footer div class="foot" id = "temp" >ESP32 Web Page Creation and Data Update Demo</div></footer>
+	<p></p>
+    <footer div class="foot" id = "temp" >
+	<button onclick="Credits()">End Credits</button>
+	</div></footer>
 
   </body>
 
@@ -775,6 +777,10 @@ table {
 	PupdateBarHeights();
 	
 	*/
+	
+  function Credits() {
+            alert("Credits to the following people on the Team \n \n -Rohit Medarametla \n -Aadi Madhavan \n -Avie Lal \n -Matthew Misa \n \n 'This was really fun to work with and we hope for its inovation'");
+        }
 	
   function showPopup() {
             document.getElementById('popupOverlay').style.display = 'block';
