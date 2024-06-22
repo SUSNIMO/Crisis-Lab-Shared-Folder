@@ -9,24 +9,22 @@ std::string pressure_data = "";
 std::string threshold_data = "";
 float Pressure = 0.00;
 float Threshold = 1500.00;
-int LED = 2;
 
-void alarm_trig(){
-  digitalWrite(LED, HIGH);
-}
-
+//Function to get the data from the sensor esp32
 void SensorRead(const char *data) {
   pressure_data = std::string(data).substr(25, 4);
   Pressure = std::stof(pressure_data);
   //Serial.println(Pressure);
 }
 
+//Function to get the Threshold pressure from the web esp32
 void ControlRead(const char *data) {
   threshold_data = std::string(data).substr(13, 4);
   Threshold = std::stof(threshold_data);
   //Serial.println(Threshold);
 }
 
+//just a find function
 void Find(std::string text, int& ID, std::string search, int start, int length) {
   ID = text.find(search.c_str(), start, length);
   if (ID != std::string::npos) {
@@ -36,6 +34,7 @@ void Find(std::string text, int& ID, std::string search, int start, int length) 
   }
 }
 
+//Function to verify Data, incase 
 void verifyData(std::string message) {
   // message example: S01 - (C): 24.84  (hPa): 0982
   // message example: C01 - (hPa): 1000
@@ -47,6 +46,8 @@ void verifyData(std::string message) {
   if (dummy) {
     if (Sensor) {
       SensorRead(message.c_str());
+
+      //Reset data to avoid going back here for the next message
       Sensor = false;
       Control = false;
       Alarm = false;
@@ -54,21 +55,21 @@ void verifyData(std::string message) {
 
     if (Control) {
       ControlRead(message.c_str());
+
+      //Reset data to avoid going back here for the next message
       Sensor = false;
       Control = false;
       Alarm = false;
     }
-
-    if (Alarm) {
-      // Alarm logic here
-    }
   }
 }
 
+//format Mac address
 void formatMacAddress(const uint8_t *macAddr, char *buffer, int maxLength) {
   snprintf(buffer, maxLength, "%02x:%02x:%02x:%02x:%02x:%02x", macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
 }
 
+//When message is recieved
 void receiveCallback(const uint8_t *macAddr, const uint8_t *data, int dataLen) {
   // only allow a maximum of 250 characters in the message + a null terminating byte
   char buffer[ESP_NOW_MAX_DATA_LEN + 1];
@@ -89,7 +90,7 @@ void receiveCallback(const uint8_t *macAddr, const uint8_t *data, int dataLen) {
   verifyData(buffer);
 }
 
-// callback when data is sent
+// callback when data is sent (for debugging purposes)
 void sentCallback(const uint8_t *macAddr, esp_now_send_status_t status) {
   // char macStr[18];
   // formatMacAddress(macAddr, macStr, 18);
@@ -99,6 +100,7 @@ void sentCallback(const uint8_t *macAddr, esp_now_send_status_t status) {
   // Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 
+//to broadcast message
 void broadcast(const String &message) {
   // this will broadcast a message to everyone in range
   uint8_t broadcastAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
@@ -130,8 +132,10 @@ void setup() {
   // Output my MAC address - useful for later
   // Serial.print("My MAC Address is: ");
   // Serial.println(WiFi.macAddress());
+  
   // shut down wifi
   WiFi.disconnect();
+  
   // startup ESP Now
   if (esp_now_init() == ESP_OK) {
     // Serial.println("ESPNow Init Success");
@@ -145,18 +149,22 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
   if (Pressure > Threshold){
+    
     // alarm triggers
     broadcast("A01 - 1");
+
+    //Prints for the arduino uno alarm to run
     Serial.println("Triggered");
     Serial.println("Triggered");
     Serial.println("Triggered");
     Serial.println("Triggered");
     Serial.println("Triggered");
     Serial.println("Triggered");
-  } else {
-    digitalWrite(LED, LOW);
+  } 
+  
+  else {
     broadcast("A01 - 0");
     //Serial.println("Not Triggered");
   }
