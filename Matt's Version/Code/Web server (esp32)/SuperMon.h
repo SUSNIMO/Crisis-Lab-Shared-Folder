@@ -250,6 +250,26 @@ table {
             border-radius: 3px;
             cursor: pointer;
         }
+		
+		#WaterChart, #PressureChart {
+    position: relative;
+    width: 100%; /* Adjust based on your chart's width */
+    height: 100%; /* Adjust based on your chart's height */
+    border: 1px solid black; /* To visualize the chart's boundary */
+}
+
+
+.marker {
+	width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px dashed gray; /* Dashed line for marker */
+    text-align: right;
+    padding-right: 5px;
+    font-size: 10px;
+    color: black;
+}
   </style>
 </head>
 
@@ -460,37 +480,61 @@ table {
 
         // Function to create bars
         function PcreateBars() {
-            const PressureChart = document.getElementById('PressureChart');
-            PressureChart.innerHTML = ''; // Clear existing bars
-            const maxHeight = PMaxHeight();
-            Pdata.forEach(height => {
-                const Pbar = document.createElement('div');
-                Pbar.className = 'Pbar';
-                const heightPercent = (height / maxHeight) * 100;
-                Pbar.style.height = heightPercent + '%';
-                PressureChart.appendChild(Pbar);
-            });
-        }
+    const PressureChart = document.getElementById('PressureChart');
+    PressureChart.innerHTML = ''; // Clear existing bars
+    
+    const maxHeight = PMaxHeight();
+    
+    Pdata.forEach(height => {
+        const Pbar = document.createElement('div');
+        Pbar.className = 'Pbar';
+        const heightPercent = (height / maxHeight) * 100;
+        Pbar.style.height = heightPercent + '%';
+        PressureChart.appendChild(Pbar);
+    });
+    
+    const markerHeights = [0.25, 0.5, 0.75, 0.976]; // Marker positions as fractions of maxHeight
+    
+    markerHeights.forEach(fraction => {
+        const marker = document.createElement('div');
+        marker.className = 'marker';
+        marker.style.bottom = (fraction * 100) + '%';
+        marker.innerText = (fraction * maxHeight).toFixed(2); // Marker text as percentage
+        PressureChart.appendChild(marker);
+    });
+}
+
 		
 		function WcreateBars() {
-            const PressureChart = document.getElementById('WaterChart');
-            WaterChart.innerHTML = ''; // Clear existing bars
-            
-			let maxHeight = WMaxHeight();
-			if (maxHeight === 0) {
-				maxHeight = 100;
-			}
-            
-			Wdata.forEach(height => {
-				height = height + maxHeight;
-                const Wbar = document.createElement('div');
-                Wbar.className = 'Wbar';
-                const heightPercent = (height / (maxHeight * 2) ) * 100;
-                Wbar.style.height = heightPercent + '%';
-                WaterChart.appendChild(Wbar);
-            });
-        }
-		
+    const WaterChart = document.getElementById('WaterChart');
+    WaterChart.innerHTML = ''; // Clear existing bars
+    
+    let maxHeight = WMaxHeight();
+    if (maxHeight === 0) {
+        maxHeight = 100;
+    }
+    
+    Wdata.forEach(height => {
+        height = height + maxHeight;
+        const Wbar = document.createElement('div');
+        Wbar.className = 'Wbar';
+        const heightPercent = (height / (maxHeight * 2)) * 100;
+        Wbar.style.height = heightPercent + '%';
+        WaterChart.appendChild(Wbar);
+    });
+    
+    const markerHeights = [0.25, 0.5, 0.75, 0.976]; // Marker positions as fractions of maxHeight
+    const markerTexts = [-0.5, 0, 0.5, 0.976]; // Marker text values
+    
+    markerHeights.forEach((fraction, index) => {
+        const marker = document.createElement('div');
+        marker.className = 'marker';
+        marker.style.bottom = (fraction * 100) + '%';
+        marker.innerText = (maxHeight * markerTexts[index]).toFixed(2);
+        WaterChart.appendChild(marker);
+    });
+}
+	
 		
 		
 		// Initial creation of bars
@@ -670,9 +714,9 @@ function PupdatePressureReadings(newReading) {
 
     // Add the new reading to the beginning of the array
     if (!isNaN(result) && result > 0) {
-		Pdata.push(result);
+		Pdata.unshift(result);
 		if (Pdata.length > 100) {
-			Pdata.shift(); // Remove the oldest bar if there are more than 100
+			Pdata.pop(); // Remove the oldest bar if there are more than 100
 		}
 		PcreateBars();
 	}
@@ -684,8 +728,9 @@ function WupdatePressureReadings(newReading) {
 
     result = ((result - Base) * (100)) / (Density * Gravity);
 	result = result * 100;
+	result1 = (result).toFixed(2);
 	
-	document.getElementById("w0").innerHTML = result;
+	document.getElementById("w0").innerHTML = result1;
 
     // Add the new reading to the beginning of the array
     Wdata.unshift(result);
