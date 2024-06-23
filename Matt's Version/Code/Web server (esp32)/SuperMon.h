@@ -139,9 +139,10 @@ table {
     }
 
 	.Charts {
-	  width: 1780px;
-      height: 450px;
+	  width: 1700px;
+      height: 400px;
       display: flex;
+	  border: 1px solid black;
     }
 
     .Pchart {
@@ -158,7 +159,6 @@ table {
 		width: 30%;
 		height: 100%;
 		border-left: 2px solid black;
-		border-bottom: 2px solid black;	
 	}
 
     .barA {
@@ -265,10 +265,20 @@ table {
     left: 0;
     right: 0;
     border-top: 1px dashed gray; /* Dashed line for marker */
+    font-size: 10px;
+    color: black;
+}
+
+.thresholdMarker {
+	width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px solid red; /* Dashed line for marker */
     text-align: right;
     padding-right: 5px;
     font-size: 10px;
-    color: black;
+    color: red;
 }
   </style>
 </head>
@@ -316,38 +326,30 @@ table {
         <td><div class="bodytext">Temperature</div></td>
         <td><div class="tabledata" id = "b1"></div></td>
       </tr>
-	  <tr>
-        <td><div class="bodytext">Alarm</div></td>
-        <td><div class="tabledata" id = "A1"></div></td>
-      </tr>
       </table>
     </div>
-	
-	<div>
-	
+
 	<div class="category">Charts</div>
 	
-	
-	<table style="width:905px">
+	<div style="width: 1700px;">
+	<table style="width: 67%;">
 	<colgroup>
         <col span="1" style="background-color:rgb(230,230,230); width: 50%; color:#000000 ;">
-        <col span="1" style="background-color:rgb(200,200,200); width: 50%%; color:#000000 ;">
+        <col span="1" style="background-color:rgb(200,200,200); width: 50%; color:#000000 ;">
       </colgroup>
-	<col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
-    <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
-    <col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
 		<tr>
 			<th colspan="1"><div class="heading">Pressure (hpa)</div></th>
 			<th colspan="1"><div class="heading">Water Height (cm)</div></th>
 		</tr>
 	</table>
+	</div>
 </div>
 	
 <div class="Charts">
 	<div class="Pchart" id="PressureChart"></div>
 	<div class="Wchart" id="WaterChart"></div>
 
-<div style="width: 20%">
+<div>
 
   <table style="width: 100%; height: 100%">
     <colgroup>
@@ -374,12 +376,6 @@ table {
       <td colspan="1"><label for="BinputField">Base Pressure:</label></td>
       <td colspan="1"><input type="text" id="BinputField" style="width: 75px"></td>
       <td colspan="1"><button onclick="BdisplayInput()">Submit</button></td>
-  </tr>
-  
-  <tr>
-      <td colspan="1"><label for="DinputField">Height max data:</label></td>
-      <td colspan="1"><input type="text" id="DinputField" style="width: 75px"></td>
-      <td colspan="1"><button onclick="DdisplayInput()">Submit</button></td>
   </tr>
   
   <tr>
@@ -442,35 +438,24 @@ table {
 
   <script type = "text/javascript">
   var Pdata = [];
-  var PmaxData = 2000;
-  var Pthreshold = 2000;
-  var PthresholdPercentage = 0; // Initialize
+  var Pthreshold;
 
   var Wdata = [];
-  var WmaxData = 30;
-  var Wthreshold = 0;
-  var WthresholdPercentage = 0; // Initialize
+  var Wthreshold;
+  
   var Base = 1000;
   var Density = 1000; // Density in kg/m^3
   var Gravity = 9.81;
 	
-  var userInputAsNumber = 0;
-  var waterLevel = WmaxData / 2;
+  var userInputAsNumber;
+  var waterLevel;
 
 
 	/*
 	//debugging 
 	
-	
-	
-	let Pdata = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100];
-    let Wdata = [100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-	
-	//PupdatePressureReadings(1000);
-	//WupdatePressureReadings(1000);
-	
-	//WupdateBarHeights();
-	//PupdateBarHeights();
+	var Pdata = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100];
+    var Wdata = [100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 	*/
 	
 	
@@ -483,7 +468,10 @@ table {
     const PressureChart = document.getElementById('PressureChart');
     PressureChart.innerHTML = ''; // Clear existing bars
     
-    const maxHeight = PMaxHeight();
+    let maxHeight = PMaxHeight();
+	if (maxHeight === 0 || maxHeight < 1250) {
+        maxHeight = 1250;
+    }
     
     Pdata.forEach(height => {
         const Pbar = document.createElement('div');
@@ -493,15 +481,24 @@ table {
         PressureChart.appendChild(Pbar);
     });
     
-    const markerHeights = [0.25, 0.5, 0.75, 0.976]; // Marker positions as fractions of maxHeight
-    
-    markerHeights.forEach(fraction => {
+    const markerHeights = [0.222, 0.472, 0.722, 0.972]; // Marker positions as fractions of maxHeight
+    const markerTexts = [0.25, 0.5, 0.75, 1]; // Marker text values
+	
+    markerHeights.forEach((fraction, index)=> {
         const marker = document.createElement('div');
         marker.className = 'marker';
         marker.style.bottom = (fraction * 100) + '%';
-        marker.innerText = (fraction * maxHeight).toFixed(2); // Marker text as percentage
+        marker.innerText = (markerTexts[index] * maxHeight).toFixed(2); // Marker text as percentage
         PressureChart.appendChild(marker);
     });
+	
+	const thresholdMarker = document.createElement('div');
+    thresholdMarker.className = 'thresholdMarker';
+	threshold = Pthreshold;
+	thresholdMarker.innerText = threshold;
+	threshold1 = ((threshold / maxHeight) - 0.028);
+    thresholdMarker.style.bottom = (threshold1 * 100) + '%';
+    PressureChart.appendChild(thresholdMarker);
 }
 
 		
@@ -510,7 +507,7 @@ table {
     WaterChart.innerHTML = ''; // Clear existing bars
     
     let maxHeight = WMaxHeight();
-    if (maxHeight === 0) {
+    if (maxHeight === 0 || maxHeight < 100) {
         maxHeight = 100;
     }
     
@@ -523,8 +520,8 @@ table {
         WaterChart.appendChild(Wbar);
     });
     
-    const markerHeights = [0.25, 0.5, 0.75, 0.976]; // Marker positions as fractions of maxHeight
-    const markerTexts = [-0.5, 0, 0.5, 0.976]; // Marker text values
+    const markerHeights = [0.222, 0.472, 0.722, 0.972]; // Marker positions as fractions of maxHeight
+    const markerTexts = [-0.5, 0, 0.5, 1]; // Marker text values
     
     markerHeights.forEach((fraction, index) => {
         const marker = document.createElement('div');
@@ -533,6 +530,16 @@ table {
         marker.innerText = (maxHeight * markerTexts[index]).toFixed(2);
         WaterChart.appendChild(marker);
     });
+	
+	
+	const thresholdMarker = document.createElement('div');
+    thresholdMarker.className = 'thresholdMarker';
+	threshold = Wthreshold;
+	thresholdMarker.innerText = threshold;
+	threshold = Wthreshold + maxHeight;
+	threshold1 = (threshold / (maxHeight * 2) - 0.028);
+    thresholdMarker.style.bottom = (threshold1 * 100) + '%';
+    WaterChart.appendChild(thresholdMarker);
 }
 	
 		
@@ -554,35 +561,8 @@ table {
 		document.getElementById('popupOverlay').style.display = 'none';
 	}
 	
-  function DdisplayInput() {
-    var userInput = document.getElementById("DinputField").value;
-    var inputNumber = parseFloat(userInput);
-    
-    // Check if the parsed input is a valid number
-    if (!isNaN(inputNumber)) {
-        WmaxData = inputNumber; // Update global WmaxData
-        waterLevel = WmaxData / 2; // Update global waterLevel
-    }
-
-    var w1 = waterLevel.toFixed(2);
-    var W2 = waterLevel * (2 / 4); 
-    var w2 = W2.toFixed(2);
-    var W3 = 0; 
-    var w3 = W3.toFixed(2);
-    var W4 = waterLevel * -1 * (2 / 4); 
-    var w4 = W4.toFixed(2);
-
-    document.getElementById("water1").innerHTML = w1;
-    document.getElementById("water2").innerHTML = w2;
-    document.getElementById("water3").innerHTML = w3;
-    document.getElementById("water4").innerHTML = w4;
-    
-    // Log values for debugging
-    console.log("DdisplayInput values:", { w1, w2, w3, w4, WmaxData, waterLevel });
-}
-
 	
-	
+
   function BdisplayInput() {
 		var userInput = document.getElementById("BinputField").value;
 		
@@ -609,28 +589,18 @@ table {
 				threshold = inputNumber;
 				//Pressure
                 Pthreshold = threshold;
-                PthresholdPercentage = (inputNumber/PmaxData) * 100;
-                PthresholdPercentage = Math.floor(PthresholdPercentage);
-                userInputAsNumber = Math.floor(userInputAsNumber);
 				
 				//Height
 				Wthreshold = ((threshold - Base) * (100)) / (Density * Gravity);
-				Wthreshold = Wthreshold * 100;
-				WthresholdPercentage = Wthreshold + waterLevel;
-				WthresholdPercentage = (WthresholdPercentage / WmaxData) * 100;
-				WthresholdPercentage = Math.floor(WthresholdPercentage);
+				Wthreshold = Wthreshold * 100;	
 				
+				document.getElementById("PdisplayDiv").innerHTML = Pthreshold;
+				document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
             }
-            // Update the display div with the updated total
-            document.getElementById("PdisplayDiv").innerHTML = Pthreshold;
-            document.getElementById("PlineElement").style.setProperty("--y-value", PthresholdPercentage + "%");
-            document.getElementById("PlineElement").innerHTML = Pthreshold;
-			
-			document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
-			document.getElementById("WlineElement").style.setProperty("--y-value", WthresholdPercentage + "%");
-            document.getElementById("WlineElement").innerHTML = Wthreshold;
-			
-			UpdateThreshold(Pthreshold);
+    UpdateThreshold(Pthreshold);
+    
+		PcreateBars();
+		WcreateBars();
         }
 		
   function WdisplayInput() {
@@ -647,26 +617,18 @@ table {
 				
 				//pressure
 				Pthreshold = (((threshold / 100) * Density * Gravity) + (Base * 100));
-				Pthreshold = Pthreshold  / 100;
-				PthresholdPercentage = (Pthreshold / PmaxData) * 100;
-				PthresholdPercentage = Math.floor(PthresholdPercentage);
+				Pthreshold = (Pthreshold / 100);
 				
 				//height
 				Wthreshold = threshold;
-				WthresholdPercentage = Wthreshold + waterLevel;
-				WthresholdPercentage = 100 * (WthresholdPercentage / WmaxData);
-				WthresholdPercentage = Math.floor(WthresholdPercentage);
-			}
-			// Update the display div with the updated total
-            document.getElementById("PdisplayDiv").innerHTML = Pthreshold;
-            document.getElementById("PlineElement").style.setProperty("--y-value", PthresholdPercentage + "%");
-            document.getElementById("PlineElement").innerHTML = Pthreshold;
-			
-			document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
-			document.getElementById("WlineElement").style.setProperty("--y-value", WthresholdPercentage + "%");
-            document.getElementById("WlineElement").innerHTML = Wthreshold;
-			
-			UpdateThreshold(Pthreshold);
+				
+				document.getElementById("PdisplayDiv").innerHTML = Pthreshold;
+				document.getElementById("WdisplayDiv").innerHTML = Wthreshold;
+			}	
+
+  UpdateThreshold(Pthreshold);
+	PcreateBars();
+	WcreateBars();
    }
 
   function UpdateThreshold(value) {
@@ -675,23 +637,12 @@ table {
       xhttp.send();
     }
 
-/*
-  function PupdateBarHeights() {
-// Select each bar and set its height according to data values
-    var bars = document.querySelectorAll('.bar');
-    bars.forEach((bar, index) => {
-      bar.style.height = `${Pdata[index]}%`;
-    });
-}
-  
-  function WupdateBarHeights() {
-// Select each bar and set its height according to data values
-    var bars = document.querySelectorAll('.barw');
-    bars.forEach((bar, index) => {
-      bar.style.height = `${Wdata[index]}%`;
-    });
-}
-*/  
+  function UpdateThreshold(value) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("PUT", "UPDATE_THRESHOLD?VALUE="+value, true);
+      xhttp.send();
+    }
+
     // global variable visible to all java functions
     var xmlHttp=createXmlHttpObject();
 
