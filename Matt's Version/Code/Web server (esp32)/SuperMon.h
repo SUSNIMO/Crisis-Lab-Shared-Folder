@@ -405,6 +405,18 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 						<td><div id="BdisplayDiv"></div></td>
 						<td>(hPa)</td>
 					</tr> 
+					
+					<tr>
+						<td>Max Height Recorded</td>
+						<td><div id="MdisplayDiv"></div></td>
+						<td>cm</td>
+					</tr> 
+					
+					<tr>
+					  <td colspan="1"><div id="AdisplayDiv"></div></td>
+					  <td colspan="1"><input type="text" id="AinputField" style="width: 75px"></td>
+					  <td colspan="1"><button onclick="AdisplayInput()">Submit</button></td>
+					</tr>
 				</table>
 			</div>
 
@@ -433,6 +445,8 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 	
 	var userInputAsNumber;
 	var waterLevel;
+	
+	var maxWaterHeight = 0;
 
 
 	/*
@@ -494,6 +508,8 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		if (maxHeight === 0 || maxHeight < 30) {
 			maxHeight = 30;
 		}
+		
+		document.getElementById("MdisplayDiv").innerHTML = WMaxHeight();
     
 		Wdata.forEach(height => {
 			height = height + maxHeight;
@@ -557,7 +573,19 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		}
 		
 		document.getElementById("BdisplayDiv").innerHTML = Base;
-	}	
+	}
+
+	function AdisplayInput() {
+		var userInput = document.getElementById("AinputField").value;
+		
+		var inputNumber = userInput;
+		// Check if the parsed input is a valid number
+		
+		let Address = inputNumber;
+		
+		document.getElementById("AdisplayDiv").innerHTML = Address;
+		Addemail(Address);
+	}
 	
 	function PdisplayInput() {
 		// Get the value entered by the user
@@ -623,10 +651,16 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		xhttp.open("PUT", "UPDATE_THRESHOLD?VALUE="+value, true);
 		xhttp.send();
     }
-
-	function UpdateThreshold(value) {
+	
+	function triggerAlarm() {
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("PUT", "UPDATE_THRESHOLD?VALUE="+value, true);
+		xhttp.open("PUT", "Alarmtriggered", true);
+		xhttp.send();
+    }
+	
+	function Addemail(Address) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("PUT", "addemail?ADDRESS="+Address, true);
 		xhttp.send();
     }
 
@@ -715,6 +749,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 	  
 		if (message > Pthreshold) {
 			showPopup();
+			triggerAlarm();
 		}
 	  
 		PupdatePressureReadings(message);
