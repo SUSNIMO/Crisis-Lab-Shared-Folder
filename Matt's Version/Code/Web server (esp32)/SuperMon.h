@@ -9,6 +9,10 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 	<title>Tsunami Wave Data Page</title>
 
 	<style>
+		body {
+			transition: background-color 0.5s, color 0.5s;
+		}
+		
 		table {
 		  position: relative;
 		  width:100%;
@@ -245,6 +249,10 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 			height: 100%; 
 			border: 1px solid black; 
 		}
+		
+		:root {
+            --markercolor: white;
+        }
 
 		.marker {
 			width: 100%;
@@ -253,7 +261,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 			right: 0;
 			border-top: 1px dashed gray; /* Dashed line for marker */
 			font-size: 12px;
-			color: white;
+			color: var(--markercolor);
 		}
 
 		.thresholdMarker {
@@ -285,6 +293,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		.colum {
 			background-color: #5a5a5a;
 			color: white;
+			transition: background-color 0.5s, color 0.5s;
 		}
 	</style>
 </head>
@@ -469,6 +478,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 	var waterLevel;
 	
 	var maxWaterHeight = 0;
+	var markerColor = 'white';
 
 
 	/*
@@ -610,10 +620,8 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 				elements[i].style.color = 'white';
 			}
 			
-			const elements1 = document.getElementsByClassName('marker');
-			for (let i = 0; i < elements1.length; i++) {
-				elements1[i].style.color = 'white';
-			}
+			markerColor = 'white';
+			document.documentElement.style.setProperty('--markercolor', markerColor);
 			
 			const elements2 = document.getElementsByClassName('colum');
 			for (let i = 0; i < elements2.length; i++) {
@@ -631,10 +639,8 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 				elements[i].style.color = 'black';
 			}
 			
-			const elements1 = document.getElementsByClassName('marker');
-			for (let i = 0; i < elements1.length; i++) {
-				elements1[i].style.color = 'black';
-			}
+			markerColor = 'black';
+			document.documentElement.style.setProperty('--markercolor', markerColor);
 			
 			const elements2 = document.getElementsByClassName('colum');
 			for (let i = 0; i < elements2.length; i++) {
