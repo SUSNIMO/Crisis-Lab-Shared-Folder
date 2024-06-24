@@ -44,7 +44,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		  padding-top: 5px;
 		  height:   25px;
 		  border-radius: 5px;
-		  color: #FFFFFF;
+		  color: var(--markercolor);
 		  line-height: 20px;
 		  transition: all 200ms ease-in-out;
 		  background-color: #87CEEB;
@@ -302,7 +302,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
     <header>
 		<div class="navbar fixed-top">
 			<div class="container">
-				<div class="navtitle" style="display: flex;">Sensor Monitor (by WC the OG)</p></div>
+				<div class="navtitle" style="display: flex;">Sensor Monitor</p></div>
 				<div class="navdata" id = "date">mm/dd/yyyy</div>
 				<div class="navheading">DATE</div><br>
 				<div class="navdata" id = "time">00:00:00</div>
