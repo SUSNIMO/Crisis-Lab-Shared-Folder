@@ -47,7 +47,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		  color: #FFFFFF;
 		  line-height: 20px;
 		  transition: all 200ms ease-in-out;
-		  background-color: #00AA00;
+		  background-color: #87CEEB;
 		}
 		
 		.bodytext {
@@ -64,7 +64,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		  height: 50px;
 		  margin: 0;
 		  padding: 10px 0px;
-		  background-color: #FFF;
+		  background-color: #87CEEB;
 		  color: #000000;
 		  border-bottom: 5px solid #293578;
 		}
@@ -217,9 +217,9 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 
 		#popupContent {
 			width: 600px;
-			height: 300px;
+			height: 400px;
 			position: absolute;
-			top: 20%;
+			top: 30%;
 			left: 80%;
 			transform: translate(-50%, -50%);
 			padding: 20px;
@@ -445,6 +445,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 					<div id="popupOverlay">
 						<div id="popupContent">
 							<p>Alarm is triggered</p>
+							<p style="font-size: 25px">Please get to High Ground!</p>
 							<button id="closeButton" onclick="closePopup()">Close</button>
 						</div>
 					</div>
