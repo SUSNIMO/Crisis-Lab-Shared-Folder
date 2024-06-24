@@ -112,7 +112,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		  font-size: 32px;
 		  line-height: 50px;
 		  padding: 20px 10px 0px 10px;
-		  color: #000000;
+		  color: white;
 		}
 		
 		.heading {
@@ -154,7 +154,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		}
 
 		.Charts {
-		  width: 1700px;
+		  width: 1820px;
 		  height: 400px;
 		  display: flex;
 		  border: 1px solid black;
@@ -163,7 +163,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		.Pchart {
 			display: flex;
 			align-items: flex-end;
-			width: 30%;
+			width: 40%;
 			height: 100%;
 			border-left: 2px solid black;
 			border-bottom: 2px solid black;	
@@ -171,7 +171,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		.Wchart {
 			display: flex;
 			align-items: flex-end;
-			width: 30%;
+			width: 40%;
 			height: 100%;
 			border-left: 2px solid black;
 		}
@@ -213,9 +213,9 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 
 		#popupContent {
 			width: 600px;
-			height: 600px;
+			height: 300px;
 			position: absolute;
-			top: 50%;
+			top: 20%;
 			left: 80%;
 			transform: translate(-50%, -50%);
 			padding: 20px;
@@ -223,11 +223,12 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 			border-radius: 5px;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 			font-size: 50px;
+			text-align: center;
 		}
 
 		#closeButton {
 			width: 25%;
-			height: 10%;
+			height: 20%;
 			font-size: 25px;
 			margin-top: 10px;
 			padding: 5px 10px;
@@ -251,8 +252,8 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 			left: 0;
 			right: 0;
 			border-top: 1px dashed gray; /* Dashed line for marker */
-			font-size: 10px;
-			color: black;
+			font-size: 12px;
+			color: white;
 		}
 
 		.thresholdMarker {
@@ -266,14 +267,33 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 			font-size: 10px;
 			color: red;
 		}
+		
+		button {
+            background-color: black;
+            border: none;
+            color: white; 
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block; 
+            font-size: 18px;
+            margin: 1px 1px; 
+            cursor: pointer; 
+            border-radius: 10px;
+        }
+		
+		.colum {
+			background-color: #5a5a5a;
+			color: white;
+		}
 	</style>
 </head>
-<body style="background-color: #efefef" onload="process()">
+<body style="background-color: #222222;" onload="process()">
   
     <header>
 		<div class="navbar fixed-top">
 			<div class="container">
-				<div class="navtitle">Sensor Monitor</div>
+				<div class="navtitle" style="display: flex;">Sensor Monitor (by WC the OG)</p></div>
 				<div class="navdata" id = "date">mm/dd/yyyy</div>
 				<div class="navheading">DATE</div><br>
 				<div class="navdata" id = "time">00:00:00</div>
@@ -299,31 +319,33 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 					<th colspan="1"><div class="heading">Data</div></th>
 				</tr>
 				<tr>
-					<td><div class="bodytext">Pressure</div></td>
-					<td><div class="tabledata" id = "b0"></div></td>
+					<td class="colum"><div class="bodytext">Pressure</div></td>
+					<td class="colum"><div class="tabledata" id = "b0"></div></td>
 				</tr>
 				<tr>
-					<td><div class="bodytext">Water Height</div></td>
-					<td><div class="tabledata" id = "w0"></div></td>
+					<td class="colum"><div class="bodytext">Water Height</div></td>
+					<td class="colum"><div class="tabledata" id = "w0"></div></td>
 				</tr>
 				<tr>
-					<td><div class="bodytext">Temperature</div></td>
-					<td><div class="tabledata" id = "b1"></div></td>
+					<td class="colum"><div class="bodytext">Temperature</div></td>
+					<td class="colum"><div class="tabledata" id = "b1"></div></td>
 				</tr>
 			</table>
 		</div>
 
 		<div class="category">Charts</div>
 	
-		<div style="width: 1700px;">
-			<table style="width: 67%;">
+		<div style="width: 1820px;">
+			<table>
 				<colgroup>
-					<col span="1" style="background-color:rgb(230,230,230); width: 50%; color:#000000 ;">
-					<col span="1" style="background-color:rgb(200,200,200); width: 50%; color:#000000 ;">
+					<col span="1" style="background-color:rgb(230,230,230); width: 31%; color:#000000 ;">
+					<col span="1" style="background-color:rgb(200,200,200); width: 31%; color:#000000 ;">
+					<col span="1" style="background-color:rgb(200,200,200); width: 40%; color:#000000 ;">
 				</colgroup>
 				<tr>
 					<th colspan="1"><div class="heading">Pressure (hpa)</div></th>
 					<th colspan="1"><div class="heading">Water Height (cm)</div></th>
+					<th colspan="1"><div class="heading">Setting</div></th>
 				</tr>
 			</table>
 		</div>
@@ -332,7 +354,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 			<div class="Pchart" id="PressureChart"></div>
 			<div class="Wchart" id="WaterChart"></div>
 
-			<div>
+			<div style="width: 20%;">
 
 				<table style="width: 100%; height: 100%">
 					<colgroup>
@@ -344,35 +366,22 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 					<col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
 					<col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
 					<tr>
-						<td colspan="1"><label for="PinputField">Threshold Pressure:</label></td>
+						<td class="colum" colspan="1"><label for="PinputField">Threshold Pressure:</label></td>
 						<td colspan="1"><input type="text" id="PinputField" style="width: 75px"></td>
 						<td colspan="1"><button onclick="PdisplayInput()">Submit</button></td>
 					</tr>
 					
 					<tr>
-						<td colspan="1"><label for="WinputField">Threshold Water:</label></td>
+						<td class="colum" colspan="1"><label for="WinputField">Threshold Water:</label></td>
 						<td colspan="1"><input type="text" id="WinputField" style="width: 75px"></td>
 						<td colspan="1"><button onclick="WdisplayInput()">Submit</button></td>
 					</tr>
 					
 					<tr>
-					  <td colspan="1"><label for="BinputField">Base Pressure:</label></td>
+					  <td class="colum" colspan="1"><label for="BinputField">Base Pressure:</label></td>
 					  <td colspan="1"><input type="text" id="BinputField" style="width: 75px"></td>
 					  <td colspan="1"><button onclick="BdisplayInput()">Submit</button></td>
 					</tr>
-				  
-					<tr>
-						<td>Alarm</td>
-						<td>Test runner</td>
-						<td><button onclick="showPopup()">Alarm</button></td>
-					</tr>
-  
-					<div id="popupOverlay">
-						<div id="popupContent">
-							<p>Alarm is triggered</p>
-							<button id="closeButton" onclick="closePopup()">Close</button>
-						</div>
-					</div>
   
 				</table>
 			</div>
@@ -389,34 +398,47 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 					<col span="2"style="background-color:rgb(0,0,0); color:#FFFFFF">
 	 
 					<tr>
-						<td>Threshold</td>
+						<td class="colum">Threshold</td>
 						<td><div id="PdisplayDiv"></div></td>
 						<td>(hPa)</td>
 					</tr> 
 				  
 					<tr>
-						<td>Wave height</td>
+						<td class="colum">Wave height</td>
 						<td><div id="WdisplayDiv"></div></td>
 						<td>(cm)</td>
 					</tr> 
 					
 					<tr>
-						<td>Base Pressure</td>
+						<td class="colum">Base Pressure</td>
 						<td><div id="BdisplayDiv"></div></td>
 						<td>(hPa)</td>
 					</tr> 
 					
 					<tr>
-						<td>Max Height Recorded</td>
+						<td class="colum">Max Height Recorded</td>
 						<td><div id="MdisplayDiv"></div></td>
 						<td>cm</td>
 					</tr> 
-					
+					<!--
 					<tr>
-					  <td colspan="1"><div id="AdisplayDiv"></div></td>
+					  <td class="colum" colspan="1"><div id="AdisplayDiv"></div></td>
 					  <td colspan="1"><input type="text" id="AinputField" style="width: 75px"></td>
 					  <td colspan="1"><button onclick="AdisplayInput()">Submit</button></td>
 					</tr>
+					-->
+					<tr>
+					  <td class="colum" colspan="1"><div id="MdisplayDiv">View:</div></td>
+					  <td colspan="1"><button onclick="MdisplayInput()">Dark Mode</button></td>
+					  <td><button onclick="showPopup()">Alarm</button></td>
+					</tr>
+					
+					<div id="popupOverlay">
+						<div id="popupContent">
+							<p>Alarm is triggered</p>
+							<button id="closeButton" onclick="closePopup()">Close</button>
+						</div>
+					</div>
 				</table>
 			</div>
 
@@ -573,6 +595,53 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 		}
 		
 		document.getElementById("BdisplayDiv").innerHTML = Base;
+	}
+	
+	function MdisplayInput() {
+		// Get the current background color of the body element
+        const bodyStyle = window.getComputedStyle(document.body);
+        const backgroundColor = bodyStyle.backgroundColor;
+
+        // Toggle between white and black background color
+		if (backgroundColor === 'rgb(240, 240, 240)') { // white
+			document.body.style.backgroundColor = '#222222';
+			const elements = document.getElementsByClassName('category');
+			for (let i = 0; i < elements.length; i++) {
+				elements[i].style.color = 'white';
+			}
+			
+			const elements1 = document.getElementsByClassName('marker');
+			for (let i = 0; i < elements1.length; i++) {
+				elements1[i].style.color = 'white';
+			}
+			
+			const elements2 = document.getElementsByClassName('colum');
+			for (let i = 0; i < elements2.length; i++) {
+				elements2[i].style.color = 'white';
+				elements2[i].style.backgroundColor = '#5a5a5a';
+			}
+		} 
+		
+		else {
+			document.body.style.backgroundColor = '#f0f0f0';
+			document.body.style.color = 'black'; // Change text color to black for better visibility
+			
+			const elements = document.getElementsByClassName('category');
+			for (let i = 0; i < elements.length; i++) {
+				elements[i].style.color = 'black';
+			}
+			
+			const elements1 = document.getElementsByClassName('marker');
+			for (let i = 0; i < elements1.length; i++) {
+				elements1[i].style.color = 'black';
+			}
+			
+			const elements2 = document.getElementsByClassName('colum');
+			for (let i = 0; i < elements2.length; i++) {
+				elements2[i].style.color = 'black';
+				elements2[i].style.backgroundColor = 'white';
+			}
+		}
 	}
 
 	function AdisplayInput() {
