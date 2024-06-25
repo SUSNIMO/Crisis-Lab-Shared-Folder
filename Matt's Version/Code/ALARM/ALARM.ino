@@ -49,14 +49,14 @@ void displayAlarmNormal() {
   // Display "Safe"
   tft.setCursor(0, 0); 
   tft.setTextColor(ST7735_GREEN); 
-  tft.setTextSize(3); 
+  tft.setTextSize(5); 
   tft.println("Safe");
 
   // Display "No tsunami incoming"
   tft.setTextWrap(true);
   tft.setCursor(0, 35); 
   tft.setTextColor(ST7735_BLUE);
-  tft.setTextSize(1.5); 
+  tft.setTextSize(2); 
   tft.println("No tsunami incoming");
 }
 
